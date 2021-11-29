@@ -6,6 +6,10 @@ import android.os.Bundle;
 import com.btssio.AP4G2.application_gsb.R;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

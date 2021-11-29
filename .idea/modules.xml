@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Application_android_GSB.iml" filepath="$PROJECT_DIR$/Application_android_GSB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AP4_android_2021_2022_G2.iml" filepath="$PROJECT_DIR$/.idea/AP4_android_2021_2022_G2.iml" />
+      <module fileurl="file://U:\dev\android bdd distante\codes android\AP4_android_2021_2022_G2\Application_android_GSB.iml" filepath="U:\dev\android bdd distante\codes android\AP4_android_2021_2022_G2\Application_android_GSB.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
