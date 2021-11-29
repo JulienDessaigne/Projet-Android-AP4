@@ -1,4 +1,4 @@
-package com.btssio.joel.application_gsb
+package com.btssio.AP4G2.application_gsb
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
