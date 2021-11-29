@@ -6,4 +6,7 @@ package com.btssio.AP4G2.application_gsb.Modele;
 
 
 public class BDSQLiteOpenHelper {
+
+
+
 }
