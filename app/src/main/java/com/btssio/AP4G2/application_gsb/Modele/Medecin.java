@@ -4,7 +4,7 @@ package com.btssio.AP4G2.application_gsb.Modele;
  * Created by dessaigne on 29/11/2021.
  */
 
-public class Praticien {
+public class Medecin {
     private long numero;
     private String nom;
     private String prenom;
@@ -15,7 +15,7 @@ public class Praticien {
     private String type_code;
     private long tel;
 
-    public Praticien(long numero, String nom, String prenom, String adresse, long CP, String ville, long coef_nototoriete, String type_code, long tel) {
+    public Medecin(long numero, String nom, String prenom, String adresse, long CP, String ville, long coef_nototoriete, String type_code, long tel) {
         this.numero = numero;
         this.nom = nom;
         this.prenom = prenom;
@@ -101,7 +101,7 @@ public class Praticien {
 
     @Override
     public String toString() {
-        return "Praticien{" +
+        return "Medecin{" +
                 "numero=" + numero +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
