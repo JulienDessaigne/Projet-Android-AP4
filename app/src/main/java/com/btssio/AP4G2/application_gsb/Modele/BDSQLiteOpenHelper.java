@@ -38,7 +38,6 @@ public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
      */
     public BDSQLiteOpenHelper(Context context, String name, CursorFactory factory, int version) {
         super(context, name, factory, version);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -47,16 +46,7 @@ public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
         db.execSQL(requete);
-
-        db.execSQL("insert into praticien (pra_num,pra_nom,pra_prenom,pra_adresse,pra_codesPostal,pra_ville,pra_coefnotoriete,type_code,pra_numTel,idDepartement) values();");
-        db.execSQL("insert into departement (num_departement,num_region,libelleDepartement) values()");
-
-        ContentValues value = new ContentValues();
-        value.put("nomV", "Esquerra");
-        value.put("niveauV",50);
-        db.insert("viticulteur", null, value);
     }
 
     /**
@@ -67,6 +57,5 @@ public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
     }
 }
