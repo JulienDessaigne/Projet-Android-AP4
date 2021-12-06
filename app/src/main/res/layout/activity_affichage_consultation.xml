@@ -4,41 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.btssio.AP4G2.application_gsb.Controler.ConsultationConnecte">
+    tools:context="com.btssio.AP4G2.application_gsb.Controler.AffichageConsultation">
 
     <TextView
-        android:id="@+id/textViewConsultConnect"
+        android:id="@+id/textViewConsult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="163dp" />
 
     <Spinner
-        android:id="@+id/spinnerConsultConnect"
+        android:id="@+id/spinnerDepartement"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="38dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:background="?android:attr/scrollbarThumbHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewConsultConnect" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewConsult" />
+
+    <TextView
+        android:id="@+id/textViewErr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDepartement"
+        tools:layout_editor_absoluteX="163dp" />
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listViewEntete"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/title_bar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerConsultConnect" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewErr" />
 
     <ListView
+        android:id="@+id/listViewPraticien"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -46,7 +59,8 @@
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView" />
+        app:layout_constraintTop_toBottomOf="@+id/listViewEntete" />
 
 </android.support.constraint.ConstraintLayout>
