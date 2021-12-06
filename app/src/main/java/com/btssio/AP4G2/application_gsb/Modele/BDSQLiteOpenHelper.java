@@ -1,39 +1,61 @@
 package com.btssio.AP4G2.application_gsb.Modele;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
 /**
  * Created by warmee on 29/11/2021.
  */
 
-
-public class BDSQLiteOpenHelper extends SQLiteOpenHelper {
-    private String requete="create table praticien ("
-            + "numero INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "nom TEXT NOT NULL,"
-            + "prenom INTEGER NOT NULL,"
-            + "adresse TEXT NOT NULL," +
-            "CP INTEGER NOT NULL," +
-            "ville TEXT NOT NULL," +
-            "coef_notoriete INTEGER NOT NULL," +
-            "type_code TEXT NOT NULL," +
-            "tel INTEGER);";
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
 
 
-    public BDSQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
+    private String requete="Create table praticien (" +
+            "    PRA_NUM  int primary key ," +
+            "    PRA_NOM text not null," +
+            "    PRA_PRENOM text not null," +
+            "    PRA_ADRESSE text," +
+            "    PRA_CODESPOSTAL text," +
+            "    PRA_VILLE text," +
+            "    PRA_COEFNOTORIETE real," +
+            "    PRA_NUMTEL string," +
+            "    NUM_DEPARTEMENT text foreign key references departement (idDepartement));" +
+            "   " +
+            "Create table departement(" +
+            "    NUM_DEPARTEMENT text primary key ," +
+            "    LIBELLEDEPARTEMENT text" +
+            ");";
+
+    /**
+     * @param context
+     * @param name
+     * @param factory
+     * @param version
+     */
+    public BDSQLiteOpenHelper(Context context, String name, CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
+
+    /**
+     *
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(requete);
-
     }
 
+
+    /**
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
 }
