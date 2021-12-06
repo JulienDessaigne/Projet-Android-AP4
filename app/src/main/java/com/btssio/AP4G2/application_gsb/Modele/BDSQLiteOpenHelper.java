@@ -49,13 +49,14 @@ public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
         db.execSQL(requete);
     }
 
+
     /**
-     *
      * @param db
      * @param oldVersion
      * @param newVersion
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
     }
 }
