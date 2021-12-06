@@ -13,21 +13,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
     private String requete="Create table praticien (" +
-            "    pra_num int primary key ," +
-            "    pra_nom text not null," +
-            "    pra_prenom text not null," +
-            "    pra_adresse text," +
-            "    pra_codesPostal smallint," +
-            "    pra_ville text," +
-            "    pra_coefnotoriete float,"+
-            "    type_code char(5)"+
-            "    pra_numTel int," +
-            "    idDepartement int foreign key references departement (idDepartement));" +
+            "    PRA_NUM  int primary key ," +
+            "    PRA_NOM text not null," +
+            "    PRA_PRENOM text not null," +
+            "    PRA_ADRESSE text," +
+            "    PRA_CODESPOSTAL text," +
+            "    PRA_VILLE text," +
+            "    PRA_COEFNOTORIETE real," +
+            "    PRA_NUMTEL string," +
+            "    NUM_DEPARTEMENT text foreign key references departement (idDepartement));" +
             "   " +
             "Create table departement(" +
-            "    num_departement int primary key ," +
-            "    num_region smallint   " +
-            "    libelleDepartement text" +
+            "    NUM_DEPARTEMENT text primary key ," +
+            "    LIBELLEDEPARTEMENT text" +
             ");";
 
     /**

@@ -14,7 +14,7 @@ public class ApiClient {
     public static Retrofit getClient() {
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.24.0.28/etu20/etu20veschembes/Deuxieme_Annee/TP/TP_Da_Ros/TP_5/")
+                .baseUrl("http://172.24.0.33/GSB")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
