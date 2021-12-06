@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             btnAffichageDeco.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getBaseContext(), affichage_medecin_deco.class);
+                    Intent intent = new Intent(getBaseContext(), affichage_praticien_deco.class);
                     startActivity(intent);
                 }
             });

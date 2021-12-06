@@ -10,7 +10,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class BDSQLiteOpenHelper extends SQLiteOpenHelper {
-    private String requete ="";
+    private String requete="create table praticien ("
+            + "numero INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + "nom TEXT NOT NULL,"
+            + "prenom INTEGER NOT NULL,"
+            + "adresse TEXT NOT NULL," +
+            "CP INTEGER NOT NULL," +
+            "ville TEXT NOT NULL," +
+            "coef_notoriete INTEGER NOT NULL," +
+            "type_code TEXT NOT NULL," +
+            "tel INTEGER);";
 
 
     public BDSQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

@@ -6,57 +6,35 @@ package com.btssio.AP4G2.application_gsb.Modele;
 
 public class Departement {
 
-    private long num_departement;
-    private long num_region;
-    private String nom;
+    private String NUM_DEPARTEMENT;
+    private String NOM;
 
-    /**
-     * @param num_departement
-     * @param num_region
-     * @param nom
-     */
-    public Departement(long num_departement, long num_region, String nom) {
-        this.num_departement = num_departement;
-        this.num_region = num_region;
-        this.nom = nom;
+    public Departement(String NUM_DEPARTEMENT, String NOM) {
+        this.NUM_DEPARTEMENT = NUM_DEPARTEMENT;
+        this.NOM = NOM;
     }
 
-    public long getNum_departement() {
-        return num_departement;
+    public String getNUM_DEPARTEMENT() {
+        return NUM_DEPARTEMENT;
     }
 
-    /**
-     * @param num_departement
-     */
-    public void setNum_departement(long num_departement) {
-        this.num_departement = num_departement;
+    public void setNUM_DEPARTEMENT(String NUM_DEPARTEMENT) {
+        this.NUM_DEPARTEMENT = NUM_DEPARTEMENT;
     }
 
-    public long getNum_region() {
-        return num_region;
+    public String getNOM() {
+        return NOM;
     }
 
-    /**
-     * @param num_region
-     */
-    public void setNum_region(long num_region) {
-        this.num_region = num_region;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNOM(String NOM) {
+        this.NOM = NOM;
     }
 
     @Override
     public String toString() {
         return "Departement{" +
-                "num_departement=" + num_departement +
-                ", num_region=" + num_region +
-                ", nom='" + nom + '\'' +
+                "NUM_DEPARTEMENT=" + NUM_DEPARTEMENT +
+                ", NOM='" + NOM + '\'' +
                 '}';
     }
 }
