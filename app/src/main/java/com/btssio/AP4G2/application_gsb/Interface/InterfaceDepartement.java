@@ -13,8 +13,8 @@ import retrofit2.http.POST;
 public interface InterfaceDepartement {
 
     @POST("lesdepartements.php")
-    Call<ArrayList<Departement>> lesdepartements();
+    Call<ArrayList<Departement>> lesDepartements();
 
     @POST("lesdepartements_des_medecins.php")
-    Call<ArrayList<Departement>> lesdepartements_des_medecins();
+    Call<ArrayList<Departement>> lesDepartementsDesPraticiens();
 }

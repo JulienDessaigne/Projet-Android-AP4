@@ -1,12 +1,10 @@
 package com.btssio.AP4G2.application_gsb.Interface;
 
-import com.btssio.AP4G2.application_gsb.Modele.Medecin;
+import com.btssio.AP4G2.application_gsb.Modele.Praticien;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -16,11 +14,11 @@ import retrofit2.http.POST;
 public interface InterfacePraticien {
 
     @POST("lesmedcins.php")
-    Call<ArrayList<Medecin>> lesmedecins();
+    Call<ArrayList<Praticien>> lesPraticiens();
 
     @POST("lesmedcins_par_depart.php")
-    Call<ArrayList<Medecin>> lesmedcins_par_depart();
+    Call<ArrayList<Praticien>> lesmedcinsParDepart();
 
     @POST("lesmedcins_par_nom.php")
-    Call<ArrayList<Medecin>> lesmedcins_par_nom();
+    Call<ArrayList<Praticien>> lesmedcins_par_nom();
 }
