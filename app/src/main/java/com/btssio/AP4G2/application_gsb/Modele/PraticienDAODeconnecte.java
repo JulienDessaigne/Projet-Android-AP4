@@ -75,6 +75,11 @@ public class PraticienDAODeconnecte {
 
     }
 
+    /**
+     * ajout d'un praticien dans la bdd local
+     * @param unPraticien
+     * @return
+     */
     public long addPraticien(Praticien unPraticien){
         long ret;
         SQLiteDatabase bd = accesBD.getWritableDatabase();
@@ -94,8 +99,6 @@ public class PraticienDAODeconnecte {
         ret = bd.insert("praticien", null, value);
 
         return ret;
-
-
     }
 
 
