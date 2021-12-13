@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.btssio.AP4G2.application_gsb.Controler.affichage_medecin_deco">
+    tools:context="com.btssio.AP4G2.application_gsb.Controler.affichage_praticien_deco">
 
 </android.support.constraint.ConstraintLayout>

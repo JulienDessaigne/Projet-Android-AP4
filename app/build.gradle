@@ -5,7 +5,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.btssio.joel.application_gsb"
+        applicationId "com.btssio.AP4G2.application_gsb"
         minSdkVersion 18
         targetSdkVersion 26
         versionCode 1

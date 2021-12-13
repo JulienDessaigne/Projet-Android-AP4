@@ -18,16 +18,10 @@ public class DepartementDAODeconnecte {
     private static String base = "BDDepartement";
     private static int version = 1;
     private BDSQLiteOpenHelper accesBD;
-    private ArrayList<Departement> lesDepartements = new ArrayList<>();
 
 
-    public ArrayList<Departement> getLesDepartements() {
-        return lesDepartements;
-    }
 
-    public void setLesDepartements(ArrayList<Departement> lesDepartements) {
-        this.lesDepartements = lesDepartements;
-    }
+
 
     /**
      * @param ct
@@ -40,51 +34,25 @@ public class DepartementDAODeconnecte {
     /**
      * @return
      */
-    private ArrayList<Departement> getDepartement() {
-        Cursor curseur;
-        String sql = "select * from departement;";
-        curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
-        this.lesDepartements=cursorToDepartementArrayList(curseur);
-        return this.lesDepartements;
 
-    }
 
     /**
-     * @return
+     * @return ArrayList<Departement>
      */
     private ArrayList<Departement> getLesDepartementsDesPraticiens() {
         Cursor curseur;
-        String sql = "select num_departement, nom from praticien join departement on departement.num_departement=praticien.numero;";
+        String sql = "select NUM_DEPARTEMENT, PRA_NOM from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
         return cursorToDepartementArrayList(curseur);
 
 
     }
 
-    public Departement getDepartementByNum(String NUM_DEPARTEMENT){
 
-        Departement leDepartement = null;
-        int i = 0 ;
-        boolean trouve = false;
-        while (i<lesDepartements.size() && ! trouve){
-            if (lesDepartements.get(i).getNUM_DEPARTEMENT()==NUM_DEPARTEMENT){
-                trouve=true;
-            }
-            else {
-                i++;
-            }
-        }
-        if (trouve){
-            leDepartement=lesDepartements.get(i);
-        }
-
-        return leDepartement;
-
-    }
 
     /**
      * @param curseur
-     * @return
+     * @return ArrayList<Departement>
      */
     private ArrayList<Departement> cursorToDepartementArrayList(Cursor curseur) {
         ArrayList<Departement> listeDepartement = new ArrayList<Departement>();
