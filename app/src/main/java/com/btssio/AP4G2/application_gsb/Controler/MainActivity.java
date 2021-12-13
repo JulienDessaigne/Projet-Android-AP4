@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         btnAffichageDeco = findViewById(R.id.bouton3);
         btnAffichageMAJ = findViewById(R.id.bouton4);
         praticienDecoAccess = new PraticienDAODeconnecte(this);
+
         departementDecoAccess = new DepartementDAODeconnecte(this);
     }
 
