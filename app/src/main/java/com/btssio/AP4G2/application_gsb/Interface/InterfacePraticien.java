@@ -15,12 +15,12 @@ import retrofit2.http.Query;
 
 public interface InterfacePraticien {
 
-    @POST("lesmedcins.php")
+    @POST("lesmedecins.php")
     Call<ArrayList<Praticien>> lesPraticiens();
 
-    @GET("lesmedcins_par_depart.php")
+    @GET("lesmedecins_par_depart.php")
     Call<ArrayList<Praticien>> lesPraticiensParDepart(@Query("libelledepartement") String libelleDepartement);
 
-    @POST("lesmedcins_par_nom.php")
+    @POST("lesmedecins_par_nom.php")
     Call<ArrayList<Praticien>> lesPraticiensParNom();
 }
