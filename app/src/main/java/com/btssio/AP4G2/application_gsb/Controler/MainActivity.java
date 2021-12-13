@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onErreur(String message) {
                     }
                 };
+
                 DepartementDAO.getDepartementsDAOConnecte();
 
             }
