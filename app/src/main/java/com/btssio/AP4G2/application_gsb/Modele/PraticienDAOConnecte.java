@@ -1,5 +1,6 @@
 package com.btssio.AP4G2.application_gsb.Modele;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.btssio.AP4G2.application_gsb.Interface.ApiClient;
@@ -28,7 +29,7 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
         callPraticien = apiPraticien.lesPraticiens();
         callPraticien.enqueue(new Callback<ArrayList<Praticien>>() {
             @Override
-            public void onResponse(Call<ArrayList<Praticien>> call, Response<ArrayList<Praticien>> response) {
+            public void onResponse(@NonNull Call<ArrayList<Praticien>> call, @NonNull Response<ArrayList<Praticien>> response) {
                 if (response.isSuccessful()) {
                     onTacheTerminee(response.body());
                 } else {
@@ -38,9 +39,32 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
                 }
             }
             @Override
-            public void onFailure(Call<ArrayList<Praticien>> call, Throwable t) {
+            public void onFailure(@NonNull Call<ArrayList<Praticien>> call, @NonNull Throwable t) {
                 onErreur("onFailurePra : "+t.getMessage());
                 Log.d("log", "erreur : "+t.getMessage());
+            }
+        });
+    }
+
+    public void getPraticiensParDepartementDAOConnecte(String libelleDepartement) {
+        Call<ArrayList<Praticien>> callPraticien;
+        callPraticien = apiPraticien.lesPraticiensParDepart(libelleDepartement);
+        callPraticien.enqueue(new Callback<ArrayList<Praticien>>() {
+
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Praticien>> call, @NonNull Response<ArrayList<Praticien>> response) {
+                //String displayResponse = "";
+                if (response.isSuccessful()) {
+                    onTacheTerminee(response.body());
+                } else {
+                    int responseString = response.code();
+                    onErreur("erreur responseString Praticien : "+responseString);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Praticien>> call, @NonNull Throwable t) {
+                onErreur("erreur onFailure Praticien: "+t.getMessage());
             }
         });
     }
