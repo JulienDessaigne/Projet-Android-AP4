@@ -16,13 +16,13 @@ import retrofit2.http.POST;
 
 public interface InterfacePraticien {
 
-    @POST("/lesmedcins.php")
+    @POST("lesmedcins.php")
     Call<ArrayList<Praticien>> lesPraticiens();
 
     @FormUrlEncoded
-    @GET("/lesmedcins_par_depart.php")
+    @GET("lesmedcins_par_depart.php")
     Call<ArrayList<Praticien>> lesPraticiensParDepart(@Field("libelledepartement") String libelleDepartement);
 
-    @POST("/lesmedcins_par_nom.php")
+    @POST("lesmedcins_par_nom.php")
     Call<ArrayList<Praticien>> lesPraticiensParNom();
 }
