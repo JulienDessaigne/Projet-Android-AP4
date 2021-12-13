@@ -187,11 +187,18 @@ public class AffichageConsultation extends AppCompatActivity {
                     // TODO Auto-generated method stub
                 }
             };
-            PraticienAcces.getPraticiensParDepartementDAOConnecte(DepartementSelectionne.getNOM());
+
+            if (DepartementSelectionne != null) {
+                PraticienAcces.getPraticiensParDepartementDAOConnecte(DepartementSelectionne.getNOM());
+            } else {
+                remplirListViewPraticienParListePraticiens(new ArrayList<Praticien>());
+            }
         } else {
             if (boutonChoisi.equals("Deconnecte")) {
                 // Récupération des données via SQLiteOpenHelper
+
             } else {
+
                 // Valorisation à vide du tableau de recencement,
                 // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
                 remplirListViewPraticienParListePraticiens(new ArrayList<Praticien>());
