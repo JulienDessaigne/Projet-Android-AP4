@@ -17,10 +17,6 @@ public class DepartementDAODeconnecte {
     private static int version = 1;
     private BDSQLiteOpenHelper accesBD;
 
-
-
-
-
     /**
      * @param ct
      */

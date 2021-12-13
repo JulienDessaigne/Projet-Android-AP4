@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controler.ConsultationConnecte"></activity>
+        <activity android:name=".Controler.AffichageConsultation"></activity>
     </application>
 
 </manifest>
