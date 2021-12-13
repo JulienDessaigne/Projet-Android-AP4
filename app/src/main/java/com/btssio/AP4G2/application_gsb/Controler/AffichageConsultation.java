@@ -93,7 +93,7 @@ public class AffichageConsultation extends AppCompatActivity {
             } else {
                 // Valorisation à vide du tableau de recencement,
                 // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
-                remplirListViewPraticienParListePraticiens(new ArrayList<Praticien>());
+                remplirSpinnerDepartementParListeDepartement(new ArrayList<Departement>());
             }
         }
     }
