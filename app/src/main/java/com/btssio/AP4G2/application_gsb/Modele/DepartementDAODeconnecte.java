@@ -27,15 +27,20 @@ public class DepartementDAODeconnecte {
 
     }
 
-    /**
-     * @return
-     */
+    public ArrayList<Departement> getDepartements(){
+
+        Cursor curseur;
+        String sql = "select NUM_DEPARTEMENT, NUM_REGION from departement;";
+        curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
+        return cursorToDepartementArrayList(curseur);
+
+    }
 
 
     /**
      * @return ArrayList<Departement>
      */
-    private ArrayList<Departement> getLesDepartementsDesPraticiens() {
+    public ArrayList<Departement> getLesDepartementsDesPraticiens() {
         Cursor curseur;
         String sql = "select NUM_DEPARTEMENT, PRA_NOM from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
