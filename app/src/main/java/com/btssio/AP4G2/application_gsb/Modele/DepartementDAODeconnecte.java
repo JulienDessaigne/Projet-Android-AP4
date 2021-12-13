@@ -85,6 +85,7 @@ public class DepartementDAODeconnecte {
         value.put("NUM_DEPARTEMENT",unDepartement.getNUM_DEPARTEMENT());
         value.put("NOM",unDepartement.getNOM());
 
+
         ret = bd.insert("departement", null, value);
 
         return ret;
