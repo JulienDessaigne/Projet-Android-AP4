@@ -23,8 +23,6 @@ public class PraticienDAODeconnecte {
      * @param ct
      */
     public PraticienDAODeconnecte(Context ct) {
-
-
         accesBD = new BDSQLiteOpenHelper(ct, base, null, version);
 
     }
