@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         btnAffichageDeco = findViewById(R.id.bouton3);
         btnAffichageMAJ = findViewById(R.id.bouton4);
         praticienDecoAccess = new PraticienDAODeconnecte(this);
-
         departementDecoAccess = new DepartementDAODeconnecte(this);
     }
 
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnAffichageImport.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 PraticienDAOConnecte PraticienDeco = new PraticienDAOConnecte() {
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onErreur(String message) {
                     }
                 };
+                PraticienDeco.getPraticienDAOConnecte();
 
                 DepartementDAOConnecte DepartementDAO = new DepartementDAOConnecte(){
                     @Override
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onErreur(String message) {
                     }
                 };
-
+                DepartementDAO.getDepartementsDAOConnecte();
 
             }
         });
@@ -123,8 +122,6 @@ public class MainActivity extends AppCompatActivity {
         btnAffichageMAJ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), AffichageConsultation.class);
-                startActivity(intent);
 
             }
         });
