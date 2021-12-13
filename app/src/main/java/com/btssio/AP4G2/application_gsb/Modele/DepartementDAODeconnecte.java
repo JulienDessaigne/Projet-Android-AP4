@@ -45,7 +45,6 @@ public class DepartementDAODeconnecte {
     }
 
 
-
     /**
      * @param curseur
      * @return ArrayList<Departement>
