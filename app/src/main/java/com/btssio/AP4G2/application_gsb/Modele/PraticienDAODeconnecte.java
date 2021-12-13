@@ -28,7 +28,7 @@ public class PraticienDAODeconnecte {
     }
 
     /**
-     * @return
+     * @return ArrayList<Praticien>
      */
     public ArrayList<Praticien> getPraticien(){
         Cursor curseur;
@@ -40,24 +40,25 @@ public class PraticienDAODeconnecte {
 
     /**
      * @param numero_departement
-     * @return
+     * @return ArrayList<Praticien>
      */
     public ArrayList<Praticien> getPraticiensByDepartement(int numero_departement){
         Cursor curseur;
-        String sql = "select * from praticien join departement on departement.num_departement=praticien.numero where num_departement="+numero_departement+";";
+        String sql = "select * from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM where NUM_DEPARTEMENT="+numero_departement+";";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
 
     }
 
+
     /**
      * @param departement
-     * @return
+     * @return ArrayList<Praticien>
      */
     public ArrayList<Praticien> getPraticiensByDepartement(Departement departement){
         Cursor curseur;
         String numero_departement = departement.getNUM_DEPARTEMENT();
-        String sql = "select * from praticien join departement on departement.num_departement=praticien.numero where num_departement="+numero_departement+";";
+        String sql = "select * from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM where NUM_DEPARTEMENT="+numero_departement+";";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
 
@@ -65,11 +66,11 @@ public class PraticienDAODeconnecte {
 
     /**
      * @param nom
-     * @return
+     * @return ArrayList<Praticien>
      */
     public ArrayList<Praticien> getPraticiensByNom(String nom){
         Cursor curseur;
-        String sql = "select * from praticien where nom="+nom+";";
+        String sql = "select * from praticien where PRA_NOM="+nom+";";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
 
@@ -101,7 +102,7 @@ public class PraticienDAODeconnecte {
 
     /**
      * @param curseur
-     * @return
+     * @return ArrayList<Praticien>
      */
     public ArrayList<Praticien> cursorToPraticienArrayList(Cursor curseur) {
         ArrayList<Praticien> listePraticien = new ArrayList<Praticien>();

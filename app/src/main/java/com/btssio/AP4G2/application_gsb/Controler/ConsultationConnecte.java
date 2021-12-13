@@ -10,6 +10,6 @@ public class ConsultationConnecte extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultation_connecte);
+        setContentView(R.layout.activity_affichage_consultation);
     }
 }
