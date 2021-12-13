@@ -12,7 +12,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
-    private String requete="Create table praticien (" +
+    private String requete=
+            "   Create table departement(" +
+            "    NUM_DEPARTEMENT text primary key ," +
+            "    NOM text);" +
+
+            "    Create table praticien (" +
             "    PRA_NUM  int primary key ," +
             "    PRA_NOM text not null," +
             "    PRA_PRENOM text not null," +
@@ -21,12 +26,7 @@ public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
             "    PRA_VILLE text," +
             "    PRA_COEFNOTORIETE real," +
             "    PRA_NUMTEL string," +
-            "    NUM_DEPARTEMENT text foreign key references departement (idDepartement));" +
-            "   " +
-            "Create table departement(" +
-            "    NUM_DEPARTEMENT text primary key ," +
-            "    LIBELLEDEPARTEMENT text" +
-            ");";
+            "    NUM_DEPARTEMENT text foreign key references departement (NUM_DEPARTEMENT));";
 
     /**
      * @param context

@@ -3,6 +3,7 @@ package com.btssio.AP4G2.application_gsb.Controler;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -59,16 +60,21 @@ public class MainActivity extends AppCompatActivity {
         btnAffichageImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PraticienDAOConnecte PraticienDeco = new PraticienDAOConnecte() {
+
+                final PraticienDAOConnecte PraticienDAO = new PraticienDAOConnecte() {
                     @Override
                     public void onTacheTerminee(String resultat) {
                     }
                     @Override
                     public void onTacheTerminee(ArrayList<Praticien> resultat) {
+
                         if(resultat.isEmpty()){
-                            Toast.makeText(getApplicationContext(),"Aucun praticien importer (Collection vide)",Toast.LENGTH_SHORT ).show();
+                            Log.d("Collection Praticien","==========================");
+                            Log.d("Collection Praticien","collection praticien vide");
+                            Log.d("Collection Praticien","==========================");
                         }else{
                             for(Praticien unPraticien : resultat){
+                                Log.d("Collection Praticien",unPraticien.toString());
                                 praticienDecoAccess.addPraticien(unPraticien);
                             }
                         }
@@ -80,11 +86,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onErreur(String message) {
                     }
                 };
-                PraticienDeco.getPraticienDAOConnecte();
+                PraticienDAO.getPraticienDAOConnecte();
 
-                DepartementDAOConnecte DepartementDAO = new DepartementDAOConnecte(){
+
+                final DepartementDAOConnecte DepartementDAO = new DepartementDAOConnecte(){
+
                     @Override
                     public void onTacheTerminee(String resultat) {
+
                     }
                     @Override
                     public void onTacheTerminee(ArrayList<Departement> resultat) {
@@ -92,11 +101,11 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Aucun departement importer (Collection vide)",Toast.LENGTH_SHORT ).show();
                         }else{
                             for(Departement unDepartement : resultat){
+                                Log.d("Collection departement",unDepartement.toString());
                                 departementDecoAccess.addDepartement(unDepartement);
                             }
                         }
                     }
-
                     @Override
                     public void onTacheTerminee(Departement resultat) {
                     }
@@ -104,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onErreur(String message) {
                     }
                 };
-
                 DepartementDAO.getDepartementsDAOConnecte();
 
             }
