@@ -4,4 +4,5 @@
     <string name="bouton2">Importation des données dans la base de données locale</string>
     <string name="bouton3">Consultation en mode déconnecté via la base de données locale</string>
     <string name="bouton4">Mise à jour de visiteurs dans la base de données locale</string>
+    <string name="title_activity_affichage_praticien_deco">affichage_praticien_deco</string>
 </resources>

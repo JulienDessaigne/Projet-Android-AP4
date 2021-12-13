@@ -4,8 +4,10 @@ package com.btssio.AP4G2.application_gsb.Modele;
  * Created by dessaigne on 29/11/2021.
  */
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -16,23 +18,15 @@ public class DepartementDAODeconnecte {
     private static String base = "BDDepartement";
     private static int version = 1;
     private BDSQLiteOpenHelper accesBD;
-    private ArrayList<Departement> lesDepartements = new ArrayList<>();
 
 
-    public ArrayList<Departement> getLesDepartements() {
-        return lesDepartements;
-    }
 
-    public void setLesDepartements(ArrayList<Departement> lesDepartements) {
-        this.lesDepartements = lesDepartements;
-    }
+
 
     /**
      * @param ct
      */
     public DepartementDAODeconnecte(Context ct) {
-
-
         accesBD = new BDSQLiteOpenHelper(ct, base, null, version);
 
     }
@@ -40,51 +34,25 @@ public class DepartementDAODeconnecte {
     /**
      * @return
      */
-    private ArrayList<Departement> getDepartement() {
-        Cursor curseur;
-        String sql = "select * from departement;";
-        curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
-        this.lesDepartements=cursorToDepartementArrayList(curseur);
-        return this.lesDepartements;
 
-    }
 
     /**
-     * @return
+     * @return ArrayList<Departement>
      */
     private ArrayList<Departement> getLesDepartementsDesPraticiens() {
         Cursor curseur;
-        String sql = "select num_departement, nom from praticien join departement on departement.num_departement=praticien.numero;";
+        String sql = "select NUM_DEPARTEMENT, PRA_NOM from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
         return cursorToDepartementArrayList(curseur);
 
 
     }
 
-    public Departement getDepartementByNum(String NUM_DEPARTEMENT){
 
-        Departement leDepartement = null;
-        int i = 0 ;
-        boolean trouve = false;
-        while (i<lesDepartements.size() && ! trouve){
-            if (lesDepartements.get(i).getNUM_DEPARTEMENT()==NUM_DEPARTEMENT){
-                trouve=true;
-            }
-            else {
-                i++;
-            }
-        }
-        if (trouve){
-            leDepartement=lesDepartements.get(i);
-        }
-
-        return leDepartement;
-
-    }
 
     /**
      * @param curseur
-     * @return
+     * @return ArrayList<Departement>
      */
     private ArrayList<Departement> cursorToDepartementArrayList(Cursor curseur) {
         ArrayList<Departement> listeDepartement = new ArrayList<Departement>();
@@ -104,5 +72,25 @@ public class DepartementDAODeconnecte {
         return listeDepartement;
     }
 
+    /**
+     * Ajout d'un departement dans la bdd local
+     * @param unDepartement
+     * @return
+     */
+    public long addDepartement(Departement unDepartement){
+        long ret;
+        SQLiteDatabase bd = accesBD.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put("NUM_DEPARTEMENT",unDepartement.getNUM_DEPARTEMENT());
+        value.put("NOM",unDepartement.getNOM());
+
+
+        ret = bd.insert("departement", null, value);
+
+        return ret;
+
+
+    }
 
 }
