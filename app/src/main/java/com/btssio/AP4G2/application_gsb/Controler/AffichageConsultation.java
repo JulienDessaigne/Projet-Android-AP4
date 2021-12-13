@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.btssio.AP4G2.application_gsb.Modele.Departement;
 import com.btssio.AP4G2.application_gsb.Modele.DepartementDAOConnecte;
+import com.btssio.AP4G2.application_gsb.Modele.DepartementDAODeconnecte;
 import com.btssio.AP4G2.application_gsb.Modele.Praticien;
 import com.btssio.AP4G2.application_gsb.Modele.PraticienDAOConnecte;
+import com.btssio.AP4G2.application_gsb.Modele.PraticienDAODeconnecte;
 import com.btssio.AP4G2.application_gsb.R;
 
 import java.util.ArrayList;
@@ -58,42 +60,46 @@ public class AffichageConsultation extends AppCompatActivity {
         String boutonChoisi = (extras != null) ? extras.getString("consultationType") : "";
 
         // Récupération de l'information en fonction du bouton cliqué
-        if (boutonChoisi.equals("Connecte")) {
+        if (boutonChoisi != null) {
+            if (boutonChoisi.equals("Connecte")) {
 
-            // Récupération des données via Retrofit
-            final DepartementDAOConnecte DepartementAcces = new DepartementDAOConnecte() {
+                // Récupération des données via Retrofit
+                final DepartementDAOConnecte DepartementAcces = new DepartementDAOConnecte() {
 
-                @Override
-                public void onTacheTerminee(final ArrayList<Departement> lesDepartements) {
+                    @Override
+                    public void onTacheTerminee(final ArrayList<Departement> lesDepartements) {
 
-                    // Appel de la méthode remplissant le spinner des départements
-                    remplirSpinnerDepartementParListeDepartement(lesDepartements);
-                }
+                        // Appel de la méthode remplissant le spinner des départements
+                        remplirSpinnerDepartementParListeDepartement(lesDepartements);
+                    }
 
-                @Override
-                public void onTacheTerminee(String resultat) {
-                    // TODO Auto-generated method stub
-                }
+                    @Override
+                    public void onTacheTerminee(String resultat) {
+                        // TODO Auto-generated method stub
+                    }
 
-                @Override
-                public void onTacheTerminee(Departement resultat) {
-                    // TODO Auto-generated method stub
-                }
+                    @Override
+                    public void onTacheTerminee(Departement resultat) {
+                        // TODO Auto-generated method stub
+                    }
 
-                @Override
-                public void onErreur(String message) {
-                    Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
-                    // TODO Auto-generated method stub
-                }
-            };
-            DepartementAcces.getDepartementsPraticienDAOConnecte();
-        } else {
-            if (boutonChoisi.equals("Deconnecte")) {
-                // Récupération des données via SQLiteOpenHelper
+                    @Override
+                    public void onErreur(String message) {
+                        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+                        // TODO Auto-generated method stub
+                    }
+                };
+                DepartementAcces.getDepartementsPraticienDAOConnecte();
             } else {
-                // Valorisation à vide du tableau de recencement,
-                // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
-                remplirSpinnerDepartementParListeDepartement(new ArrayList<Departement>());
+                if (boutonChoisi.equals("Deconnecte")) {
+                    // Récupération des données via SQLiteOpenHelper
+                    DepartementDAODeconnecte DepartementDAODeconnecteAcces = new DepartementDAODeconnecte(this);
+                    remplirSpinnerDepartementParListeDepartement(DepartementDAODeconnecteAcces.getDepartements());
+                } else {
+                    // Valorisation à vide du tableau de recencement,
+                    // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
+                    remplirSpinnerDepartementParListeDepartement(new ArrayList<Departement>());
+                }
             }
         }
     }
@@ -196,6 +202,8 @@ public class AffichageConsultation extends AppCompatActivity {
         } else {
             if (boutonChoisi.equals("Deconnecte")) {
                 // Récupération des données via SQLiteOpenHelper
+                PraticienDAODeconnecte praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
+                remplirListViewPraticienParListePraticiens(praticienDAODeconnecteAcces.getPraticiensByDepartement(DepartementSelectionne.getNOM()));
 
             } else {
 
