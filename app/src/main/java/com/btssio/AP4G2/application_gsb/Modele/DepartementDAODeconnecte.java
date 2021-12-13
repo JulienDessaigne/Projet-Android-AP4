@@ -4,8 +4,10 @@ package com.btssio.AP4G2.application_gsb.Modele;
  * Created by dessaigne on 29/11/2021.
  */
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -21,8 +23,6 @@ public class DepartementDAODeconnecte {
      * @param ct
      */
     public DepartementDAODeconnecte(Context ct) {
-
-
         accesBD = new BDSQLiteOpenHelper(ct, base, null, version);
 
     }
@@ -68,5 +68,25 @@ public class DepartementDAODeconnecte {
         return listeDepartement;
     }
 
+    /**
+     * Ajout d'un departement dans la bdd local
+     * @param unDepartement
+     * @return
+     */
+    public long addDepartement(Departement unDepartement){
+        long ret;
+        SQLiteDatabase bd = accesBD.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put("NUM_DEPARTEMENT",unDepartement.getNUM_DEPARTEMENT());
+        value.put("NOM",unDepartement.getNOM());
+
+
+        ret = bd.insert("departement", null, value);
+
+        return ret;
+
+
+    }
 
 }
