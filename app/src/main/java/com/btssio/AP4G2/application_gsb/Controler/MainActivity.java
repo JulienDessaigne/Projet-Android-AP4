@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAffichageDeco;
     private PraticienDAODeconnecte praticienDecoAccess;
     private DepartementDAODeconnecte departementDecoAccess;
+    private PraticienDAODeconnecte praticienDAODeconnecteAcces;
 
 
     @Override
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         btnAffichageMAJ = findViewById(R.id.bouton4);
         praticienDecoAccess = new PraticienDAODeconnecte(this);
         departementDecoAccess = new DepartementDAODeconnecte(this);
+        praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
     }
 
 
@@ -60,40 +62,11 @@ public class MainActivity extends AppCompatActivity {
         btnAffichageImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final PraticienDAOConnecte PraticienDAO = new PraticienDAOConnecte() {
-                    @Override
-                    public void onTacheTerminee(String resultat) {
-                    }
-                    @Override
-                    public void onTacheTerminee(ArrayList<Praticien> resultat) {
-
-                        if(resultat.isEmpty()){
-                            Log.d("Collection Praticien","==========================");
-                            Log.d("Collection Praticien","collection praticien vide");
-                            Log.d("Collection Praticien","==========================");
-                        }else{
-                            for(Praticien unPraticien : resultat){
-                                Log.d("Collection Praticien",unPraticien.toString());
-                                praticienDecoAccess.addPraticien(unPraticien);
-                            }
-                        }
-                    }
-                    @Override
-                    public void onTacheTerminee(Praticien resultat) {
-                    }
-                    @Override
-                    public void onErreur(String message) {
-                    }
-                };
-                PraticienDAO.getPraticienDAOConnecte();
-
-
+                Log.d("Test","=============test=============");
                 final DepartementDAOConnecte DepartementDAO = new DepartementDAOConnecte(){
-
                     @Override
-                    public void onTacheTerminee(String resultat) {
 
+                    public void onTacheTerminee(String resultat) {
                     }
                     @Override
                     public void onTacheTerminee(ArrayList<Departement> resultat) {
@@ -106,15 +79,79 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }
+
                     @Override
                     public void onTacheTerminee(Departement resultat) {
                     }
+
                     @Override
                     public void onErreur(String message) {
                     }
                 };
                 DepartementDAO.getDepartementsDAOConnecte();
 
+                PraticienDAOConnecte PraticienDAO = new PraticienDAOConnecte() {
+                    @Override
+                    public void onTacheTerminee(String resultat) {
+                    }
+
+                    @Override
+                    public void onTacheTerminee(ArrayList<Praticien> resultat) {
+                        if(resultat.isEmpty()){
+                            Log.d("Collection Praticien","==========================");
+                            Log.d("Collection Praticien","collection praticien vide");
+                            Log.d("Collection Praticien","==========================");
+                        }else{
+                            for(Praticien unPraticien : resultat){
+                                Log.d("Collection Praticien",unPraticien.toString());
+                                praticienDecoAccess.addPraticien(unPraticien);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onTacheTerminee(Praticien resultat) {
+                    }
+
+                    @Override
+                    public void onErreur(String message) {
+                    }
+                };
+                PraticienDAO.getPraticienDAOConnecte();
+
+                // les tables sont remplies
+                Log.d("test PraticienDAOdeco",praticienDAODeconnecteAcces.getPraticiens().toString());
+                ArrayList<Praticien> nomPraticien = new ArrayList(praticienDAODeconnecteAcces.getPraticiens());
+                for(Praticien unNomPrat:nomPraticien){
+                    PraticienDAO = new PraticienDAOConnecte() {
+                        @Override
+                        public void onTacheTerminee(String resultat) {
+                        }
+                        @Override
+                        public void onTacheTerminee(ArrayList<Praticien> resultat) {
+
+                            if(resultat.isEmpty()){
+                                Log.d("Collection Praticien","==========================");
+                                Log.d("Collection Praticien","collection praticien vide");
+                                Log.d("Collection Praticien","==========================");
+                            }else{
+                                for(Praticien unPraticien : resultat){
+                                    Log.d("Collection Praticien",unPraticien.toString());
+                                    //TODO faire en sorte de pouvoir ajouter un numdepartement
+                                    Integer NumDepartementPraticien = Integer.parseInt(unPraticien.getNUM_DEPARTEMENT().toString());
+                                    praticienDecoAccess.addNumDepartementPraticien(NumDepartementPraticien);
+                                }
+                            }
+                        }
+                        @Override
+                        public void onTacheTerminee(Praticien resultat) {
+                        }
+                        @Override
+                        public void onErreur(String message) {
+                        }
+                    };
+                    PraticienDAO.getPraticiensParNomDAOConnecte(unNomPrat.getPRA_NOM());
+                }
             }
         });
 

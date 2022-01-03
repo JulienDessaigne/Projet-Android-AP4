@@ -24,13 +24,12 @@ public class PraticienDAODeconnecte {
      */
     public PraticienDAODeconnecte(Context ct) {
         accesBD = new BDSQLiteOpenHelper(ct, base, null, version);
-
     }
 
     /**
      * @return ArrayList<Praticien>
      */
-    public ArrayList<Praticien> getPraticien(){
+    public ArrayList<Praticien> getPraticiens(){
         Cursor curseur;
         String sql = "select * from praticien;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
@@ -39,12 +38,12 @@ public class PraticienDAODeconnecte {
     }
 
     /**
-     * @param nom_departement
+     * @param numero_departement
      * @return ArrayList<Praticien>
      */
-    public ArrayList<Praticien> getPraticiensByDepartement(String nom_departement){
+    public ArrayList<Praticien> getPraticiensByDepartement(String numero_departement){
         Cursor curseur;
-        String sql = "select * from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM where NUM_DEPARTEMENT="+nom_departement+";";
+        String sql = "select * from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM where NUM_DEPARTEMENT="+numero_departement+";";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
 
@@ -73,14 +72,8 @@ public class PraticienDAODeconnecte {
         String sql = "select * from praticien where PRA_NOM="+nom+";";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
-
     }
 
-    /**
-     * ajout d'un praticien dans la bdd local
-     * @param unPraticien
-     * @return
-     */
     public long addPraticien(Praticien unPraticien){
         long ret;
         SQLiteDatabase bd = accesBD.getWritableDatabase();
@@ -138,6 +131,18 @@ public class PraticienDAODeconnecte {
         }
 
         return listePraticien;
+    }
+
+    public long addNumDepartementPraticien(Integer numDepartement){
+        long ret;
+        SQLiteDatabase bd = accesBD.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put("NUM_DEPARTEMENT", numDepartement);
+
+        ret = bd.insert("praticien", null, value);
+
+        return ret;
     }
 
 
