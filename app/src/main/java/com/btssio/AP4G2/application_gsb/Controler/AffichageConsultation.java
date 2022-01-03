@@ -1,8 +1,8 @@
 package com.btssio.AP4G2.application_gsb.Controler;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,7 +42,7 @@ public class AffichageConsultation extends AppCompatActivity {
         remplirSpinnerDepartementParBouton();
         remplirlistviewEntete();
         remplirListViewPraticienParBouton(DepartementSelectionne);
-        //gestion_suppression();
+        gestion_infosPraticien();
     }
 
     public void setDepartementSelectionne(Departement unDepartement) {
@@ -246,30 +246,34 @@ public class AffichageConsultation extends AppCompatActivity {
         } catch (Exception e) {}
     }
 
-//    public void gestion_suppression(){
-//
-//        final Gestionnaire_Departement unGestionnaireDepartement = (Gestionnaire_Departement) getApplicationContext();
-//
-//        listviewPraticien.setOnItemClickListener(new AdapterView.OnItemClickListener()
-//        {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                String itemClique = adapterView.getItemAtPosition(i).toString();
-//                itemClique = itemClique.substring(1, itemClique.length()-1);
-//                String[] keyValuePairs = itemClique.split(",");
-//                HashMap<String,String> ItemDecoupe = new HashMap<>();
-//
-//                for(String pair : keyValuePairs) {
-//                    String[] entry = pair.split("=");
-//                    ItemDecoupe.put(entry[0].trim(), entry[1].trim());
-//                }
-//
-//                Toast.makeText(getApplicationContext(), "Departement supprimé !", Toast.LENGTH_LONG).show();
-//                unGestionnaireDepartement.supprimerDepartement(unGestionnaireDepartement.getDepartements(ItemDecoupe.get("nom"), ItemDecoupe.get("prenom")));
-//
-//                remplirListViewPraticienParListePraticiens();
-//            }
-//        });
-//    }
+    public void gestion_infosPraticien(){
+
+        listviewPraticien.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String itemClique = adapterView.getItemAtPosition(i).toString();
+                itemClique = itemClique.substring(1, itemClique.length()-1);
+                String[] paireCleValeur = itemClique.split(",");
+                HashMap<String,String> ItemDecoupe = new HashMap<>();
+
+                for(String pair : paireCleValeur) {
+                    String[] entry = pair.split("=");
+                    ItemDecoupe.put(entry[0].trim(), entry[1].trim());
+                }
+
+                // Récupération de l'information de source d'information
+                Bundle extras = getIntent().getExtras();
+                String boutonChoisi = (extras != null) ? extras.getString("consultationType") : "";
+
+                // Affichage de l'activité responsable de l'affichage des données complètes du praticien sélectionné
+                Intent intent = new Intent(getBaseContext(), AffichageInfosPraticien.class);
+                intent.putExtra("consultationType", boutonChoisi); // Ajout du choix Connecté/Deconnecté
+                intent.putExtra("praticienNom", ItemDecoupe.get("nom")); // Ajout du nom du praticien sélectionné
+                intent.putExtra("praticienPrenom", ItemDecoupe.get("prenom")); // Ajout du prénom du praticien sélectionné
+                startActivity(intent);
+            }
+        });
+    }
 }
