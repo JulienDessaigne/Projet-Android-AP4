@@ -2,6 +2,7 @@ package com.btssio.AP4G2.application_gsb.Controler;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,12 +38,15 @@ public class AffichageConsultation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affichage_consultation);
 
-
         Initialiser();
         remplirSpinnerDepartementParBouton();
         remplirlistviewEntete();
         remplirListViewPraticienParBouton(DepartementSelectionne);
         //gestion_suppression();
+    }
+
+    public void setDepartementSelectionne(Departement unDepartement) {
+        DepartementSelectionne = unDepartement;
     }
 
     public void Initialiser() {
@@ -121,10 +125,8 @@ public class AffichageConsultation extends AppCompatActivity {
         spinnerDepartement.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int arg2, long arg3) {
-                // TODO Auto-generated method stub
-                DepartementSelectionne = lesDepartements.get(arg2);
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                remplirListViewPraticienParBouton(lesDepartements.get(arg2));
             }
 
             @Override
@@ -196,8 +198,6 @@ public class AffichageConsultation extends AppCompatActivity {
 
             if (DepartementSelectionne != null) {
                 PraticienAcces.getPraticiensParDepartementDAOConnecte(DepartementSelectionne.getNOM());
-            } else {
-                remplirListViewPraticienParListePraticiens(new ArrayList<Praticien>());
             }
         } else {
             if (boutonChoisi.equals("Deconnecte")) {
