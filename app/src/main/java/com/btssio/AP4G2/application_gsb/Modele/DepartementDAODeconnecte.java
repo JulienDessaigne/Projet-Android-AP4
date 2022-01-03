@@ -30,7 +30,7 @@ public class DepartementDAODeconnecte {
     /**
      * @return ArrayList<Departement>
      */
-    private ArrayList<Departement> getLesDepartementsDesPraticiens() {
+    public ArrayList<Departement> getLesDepartementsDesPraticiens() {
         Cursor curseur;
         String sql = "select NUM_DEPARTEMENT, PRA_NOM from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
@@ -45,7 +45,7 @@ public class DepartementDAODeconnecte {
     public ArrayList<Departement> getDepartements(){
 
         Cursor curseur;
-        String sql = "select NUM_DEPARTEMENT, NUM_REGION from departement;";
+        String sql = "select * from departement;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
         return cursorToDepartementArrayList(curseur);
 
@@ -59,14 +59,12 @@ public class DepartementDAODeconnecte {
     private ArrayList<Departement> cursorToDepartementArrayList(Cursor curseur) {
         ArrayList<Departement> listeDepartement = new ArrayList<Departement>();
         String NUM_DEPARTEMENT ;
-
         String NOM;
 
         curseur.moveToFirst();
         while (!curseur.isAfterLast()) {
             NUM_DEPARTEMENT = curseur.getString(0);
-
-            NOM = curseur.getString(2);
+            NOM = curseur.getString(1);
             listeDepartement.add(new Departement(NUM_DEPARTEMENT, NOM));
             curseur.moveToNext();
         }

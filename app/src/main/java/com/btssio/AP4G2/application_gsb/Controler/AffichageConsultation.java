@@ -3,6 +3,7 @@ package com.btssio.AP4G2.application_gsb.Controler;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,7 +43,7 @@ public class AffichageConsultation extends AppCompatActivity {
         remplirSpinnerDepartementParBouton();
         remplirlistviewEntete();
         remplirListViewPraticienParBouton(DepartementSelectionne);
-        gestion_infosPraticien();
+        //gestion_infosPraticien();
     }
 
     public void Initialiser() {
@@ -85,7 +86,7 @@ public class AffichageConsultation extends AppCompatActivity {
 
                     @Override
                     public void onErreur(String message) {
-                        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                         // TODO Auto-generated method stub
                     }
                 };
@@ -103,9 +104,9 @@ public class AffichageConsultation extends AppCompatActivity {
             }
         }
     }
-    
+
     public void remplirSpinnerDepartementParListeDepartement(final ArrayList<Departement> lesDepartements) {
-        
+
         // Déclaration de l'adaptateur pour le spinner
         ArrayAdapter<String> spinDepartementsAdapter = new ArrayAdapter<>(
                 AffichageConsultation.this.getBaseContext(), android.R.layout.simple_spinner_item
@@ -114,6 +115,7 @@ public class AffichageConsultation extends AppCompatActivity {
         // Récupération des noms des départements
         for (int i = 0; i < lesDepartements.size(); i++) {
             spinDepartementsAdapter.add(lesDepartements.get(i).getNOM());
+            Log.d("Test",lesDepartements.get(i).getNOM());
         }
 
         spinnerDepartement.setAdapter(spinDepartementsAdapter);
@@ -147,13 +149,14 @@ public class AffichageConsultation extends AppCompatActivity {
 
             adapter_entete = new SimpleAdapter(this,
                     maliste_entete, R.layout.colonne, new
-                    String[] { "PRA_NOM", "PRA_PRENOM" }, new
-                    int[] {
+                    String[]{"PRA_NOM", "PRA_PRENOM"}, new
+                    int[]{
                     R.id.textViewColonne1, R.id.textViewColonne2
             });
 
             listviewEntete.setAdapter(adapter_entete);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
 
     public void remplirListViewPraticienParBouton(Departement DepartementSelectionne) {
@@ -164,13 +167,13 @@ public class AffichageConsultation extends AppCompatActivity {
 
         // Récupération de l'information en fonction du bouton cliqué
         if (boutonChoisi.equals("Connecte")) {
-            
+
             // Récupération des données via Retrofit
             final PraticienDAOConnecte PraticienAcces = new PraticienDAOConnecte() {
 
                 @Override
                 public void onTacheTerminee(final ArrayList<Praticien> lesPraticiens) {
-                    
+
                     // Utilisation de la liste de Praticiens récupérée
                     remplirListViewPraticienParListePraticiens(lesPraticiens);
                 }
@@ -187,7 +190,7 @@ public class AffichageConsultation extends AppCompatActivity {
 
                 @Override
                 public void onErreur(String message) {
-                    Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                     // TODO Auto-generated method stub
                 }
             };
@@ -197,9 +200,13 @@ public class AffichageConsultation extends AppCompatActivity {
             }
         } else {
             if (boutonChoisi.equals("Deconnecte")) {
-                // Récupération des données via SQLiteOpenHelper
-                PraticienDAODeconnecte praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
-                remplirListViewPraticienParListePraticiens(praticienDAODeconnecteAcces.getPraticiensByDepartement(DepartementSelectionne.getNOM()));
+                if (DepartementSelectionne != null) {
+                    // Récupération des données via SQLiteOpenHelper
+                    PraticienDAODeconnecte praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
+                    Log.d("DEPARTEMENT SELECTIONNE", DepartementSelectionne.getNUM_DEPARTEMENT());
+                    remplirListViewPraticienParListePraticiens(praticienDAODeconnecteAcces.getPraticiensByDepartement(DepartementSelectionne.getNUM_DEPARTEMENT()));
+                }
+
 
             } else {
 
@@ -209,9 +216,9 @@ public class AffichageConsultation extends AppCompatActivity {
             }
         }
     }
-    
+
     public void remplirListViewPraticienParListePraticiens(ArrayList<Praticien> lesPraticiens) {
-        
+
         // Création collection
         ArrayList<HashMap<String, String>> listePraticien = new ArrayList<>();
 
@@ -233,15 +240,16 @@ public class AffichageConsultation extends AppCompatActivity {
             adapterPraticien = new SimpleAdapter(this,
                     listePraticien,
                     R.layout.colonne,
-                    new String[] { "PRA_NOM", "PRA_PRENOM" },
-                    new int[] { R.id.textViewColonne1, R.id.textViewColonne2
+                    new String[]{"PRA_NOM", "PRA_PRENOM"},
+                    new int[]{R.id.textViewColonne1, R.id.textViewColonne2
                     });
 
             // MAJ de la listview à utilisant l'adapter
             listviewPraticien.setAdapter(adapterPraticien);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
-
+/*
     public void gestion_infosPraticien(){
 
         listviewPraticien.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -271,5 +279,5 @@ public class AffichageConsultation extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
+    }*/
 }
