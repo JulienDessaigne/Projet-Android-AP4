@@ -26,7 +26,9 @@ public class BDSQLiteOpenHelper extends SQLiteOpenHelper{
             "    PRA_VILLE text," +
             "    PRA_COEFNOTORIETE real," +
             "    PRA_TELEPHONE string," +
-            "    NUM_DEPARTEMENT text foreign key references departement (NUM_DEPARTEMENT));";
+            "    TYP_CODE text," +
+            "    NUM_DEPARTEMENT text, " +
+            "    foreign key (NUM_DEPARTEMENT) references departement(NUM_DEPARTEMENT));";
 
     /**
      * @param context

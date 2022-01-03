@@ -29,7 +29,7 @@ public class PraticienDAODeconnecte {
     /**
      * @return ArrayList<Praticien>
      */
-    public ArrayList<Praticien> getPraticien(){
+    public ArrayList<Praticien> getPraticiens(){
         Cursor curseur;
         String sql = "select * from praticien;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
