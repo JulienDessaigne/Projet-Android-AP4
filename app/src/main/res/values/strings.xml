@@ -5,4 +5,16 @@
     <string name="bouton3">Consultation en mode déconnecté via la base de données locale</string>
     <string name="bouton4">Mise à jour de visiteurs dans la base de données locale</string>
     <string name="title_activity_affichage_praticien_deco">affichage_praticien_deco</string>
+    <string name="titreInfosPraticien">Informations du Praticien Sélectionné</string>
+    <string name="InfosNomPraticien">Nom :</string>
+    <string name="InfosPrenomPraticien">Prénom :</string>
+    <string name="InfosAdressePraticien">Adresse :</string>
+    <string name="InfosVillePraticien">Ville :</string>
+    <string name="InfosCodePostalPraticien">Code Postal :</string>
+    <string name="InfosTelephonePraticien">Téléphone :</string>
+    <string name="InfosCoefNotorietePraticien">Coefficient de Notoriété :</string>
+    <string name="InfosNumDepartPraticien">Numéro Département :</string>
+    <string name="InfosNomDepartPraticien">Nom du Département :</string>
+    <string name="InfosNumRegionPraticien">Numéro de Région :</string>
+    <string name="InfosNumPraticien">Numéro du Praticien :</string>
 </resources>

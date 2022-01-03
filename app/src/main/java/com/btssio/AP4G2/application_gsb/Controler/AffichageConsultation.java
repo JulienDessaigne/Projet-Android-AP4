@@ -45,10 +45,6 @@ public class AffichageConsultation extends AppCompatActivity {
         gestion_infosPraticien();
     }
 
-    public void setDepartementSelectionne(Departement unDepartement) {
-        DepartementSelectionne = unDepartement;
-    }
-
     public void Initialiser() {
 
         // Valorisation des variables représentant les éléments XML
@@ -270,8 +266,8 @@ public class AffichageConsultation extends AppCompatActivity {
                 // Affichage de l'activité responsable de l'affichage des données complètes du praticien sélectionné
                 Intent intent = new Intent(getBaseContext(), AffichageInfosPraticien.class);
                 intent.putExtra("consultationType", boutonChoisi); // Ajout du choix Connecté/Deconnecté
-                intent.putExtra("praticienNom", ItemDecoupe.get("nom")); // Ajout du nom du praticien sélectionné
-                intent.putExtra("praticienPrenom", ItemDecoupe.get("prenom")); // Ajout du prénom du praticien sélectionné
+                intent.putExtra("nomPraticien", ItemDecoupe.get("nom")); // Ajout du nom du praticien sélectionné
+                intent.putExtra("prenomPraticien", ItemDecoupe.get("prenom")); // Ajout du prénom du praticien sélectionné
                 startActivity(intent);
             }
         });

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.btssio.AP4G2.application_gsb.Controler.AffichageInfosPraticien">
+
+    <TextView
+        android:id="@+id/textViewTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/titreInfosPraticien"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNumPraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/InfosNumPraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitre" />
+
+    <TextView
+        android:id="@+id/textViewNumPraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewNumPraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitre" />
+
+    <TextView
+        android:id="@+id/textViewNomPraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/InfosNomPraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumPraticien" />
+
+    <TextView
+        android:id="@+id/textViewNomPraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewNomPraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumPraticien" />
+
+    <TextView
+        android:id="@+id/textViewPrenomPraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/InfosPrenomPraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomPraticien" />
+
+    <TextView
+        android:id="@+id/textViewPrenomPraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewPrenomPraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomPraticien" />
+
+    <TextView
+        android:id="@+id/textViewTelephonePracticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/InfosTelephonePraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrenomPraticien" />
+
+    <TextView
+        android:id="@+id/textViewTelephonePracticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewTelephonePracticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrenomPraticien" />
+
+    <TextView
+        android:id="@+id/textViewAdressePracticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/InfosAdressePraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTelephonePracticien" />
+
+    <TextView
+        android:id="@+id/textViewAdressePracticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewAdressePracticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrenomPraticien" />
+
+    <TextView
+        android:id="@+id/textViewCodePostalPraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/InfosCodePostalPraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAdressePracticien" />
+
+    <TextView
+        android:id="@+id/textViewCodePostalPraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewCodePostalPraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAdressePracticien" />
+
+    <TextView
+        android:id="@+id/textViewVillePraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/InfosVillePraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCodePostalPraticien" />
+
+    <TextView
+        android:id="@+id/textViewVillePraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewVillePraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCodePostalPraticien" />
+
+    <TextView
+        android:id="@+id/textViewCoefNotorietePraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/InfosCoefNotorietePraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewVillePraticien" />
+
+    <TextView
+        android:id="@+id/textViewCoefNotorietePraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewCoefNotorietePraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewVillePraticien" />
+
+    <TextView
+        android:id="@+id/textViewNumeroDepartPraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/InfosNumDepartPraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCoefNotorietePraticien" />
+
+    <TextView
+        android:id="@+id/textViewNumeroDepartPraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewNumeroDepartPraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCoefNotorietePraticien" />
+
+    <TextView
+        android:id="@+id/textViewNomDepartPraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/InfosNomDepartPraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumeroDepartPraticien" />
+
+    <TextView
+        android:id="@+id/textViewNomDepartPraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewNomDepartPraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumeroDepartPraticien" />
+
+    <TextView
+        android:id="@+id/textViewNumRegionPraticien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/InfosNumRegionPraticien"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomDepartPraticien" />
+
+    <TextView
+        android:id="@+id/textViewNumRegionPraticienValeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/textViewNumRegionPraticien"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomDepartPraticien" />
+
+</android.support.constraint.ConstraintLayout>
