@@ -34,7 +34,6 @@ public class PraticienDAODeconnecte {
         String sql = "select * from praticien;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
-
     }
 
     /**
@@ -133,17 +132,17 @@ public class PraticienDAODeconnecte {
         return listePraticien;
     }
 
-    public long addNumDepartementPraticien(Integer numDepartement){
+    public long addNumDepartementPraticien(String Prenom,String Nom,String numDepartement){
         long ret;
         SQLiteDatabase bd = accesBD.getWritableDatabase();
 
         ContentValues value = new ContentValues();
         value.put("NUM_DEPARTEMENT", numDepartement);
 
-        ret = bd.insert("praticien", null, value);
-
+        ret = bd.update("praticien", value,"PRA_PRENOM=? and PRA_NOM=?", new String[]{Prenom,Nom});
         return ret;
     }
+
 
 
 }

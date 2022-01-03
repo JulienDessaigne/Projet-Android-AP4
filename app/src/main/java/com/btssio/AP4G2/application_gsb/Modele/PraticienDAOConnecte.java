@@ -71,7 +71,7 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
 
     public void getPraticiensParNomDAOConnecte(String nom){
         Call<ArrayList<Praticien>> callPraticien;
-        callPraticien = apiPraticien.lesPraticiensParDepart(nom);
+        callPraticien = apiPraticien.lesPraticiensParNom(nom);
         callPraticien.enqueue(new Callback<ArrayList<Praticien>>() {
 
             @Override
@@ -84,7 +84,6 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
                     onErreur("erreur responseString Praticien : "+responseString);
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<ArrayList<Praticien>> call, @NonNull Throwable t) {
                 onErreur("erreur onFailure Praticien: "+t.getMessage());
