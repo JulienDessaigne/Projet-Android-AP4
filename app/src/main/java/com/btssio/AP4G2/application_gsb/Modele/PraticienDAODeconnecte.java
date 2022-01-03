@@ -24,7 +24,6 @@ public class PraticienDAODeconnecte {
      */
     public PraticienDAODeconnecte(Context ct) {
         accesBD = new BDSQLiteOpenHelper(ct, base, null, version);
-
     }
 
     /**
@@ -73,7 +72,6 @@ public class PraticienDAODeconnecte {
         String sql = "select * from praticien where PRA_NOM="+nom+";";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
-
     }
 
     /**
@@ -138,6 +136,18 @@ public class PraticienDAODeconnecte {
         }
 
         return listePraticien;
+    }
+
+    public long addNumDepartementPraticien(Integer numDepartement){
+        long ret;
+        SQLiteDatabase bd = accesBD.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put("NUM_DEPARTEMENT", numDepartement);
+
+        ret = bd.insert("praticien", null, value);
+
+        return ret;
     }
 
 
