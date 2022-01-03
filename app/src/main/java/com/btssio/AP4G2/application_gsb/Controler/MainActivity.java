@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("Test","=============test=============");
-                final DepartementDAOConnecte DepartementDAO = new DepartementDAOConnecte(){
+                DepartementDAOConnecte DepartementDAO = new DepartementDAOConnecte(){
                     @Override
 
                     public void onTacheTerminee(String resultat) {

@@ -1,5 +1,6 @@
 package com.btssio.AP4G2.application_gsb.Controler;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,11 +43,7 @@ public class AffichageConsultation extends AppCompatActivity {
         remplirSpinnerDepartementParBouton();
         remplirlistviewEntete();
         remplirListViewPraticienParBouton(DepartementSelectionne);
-        //gestion_suppression();
-    }
-
-    public void setDepartementSelectionne(Departement unDepartement) {
-        DepartementSelectionne = unDepartement;
+        //gestion_infosPraticien();
     }
 
     public void Initialiser() {
@@ -89,7 +86,7 @@ public class AffichageConsultation extends AppCompatActivity {
 
                     @Override
                     public void onErreur(String message) {
-                        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                         // TODO Auto-generated method stub
                     }
                 };
@@ -107,9 +104,9 @@ public class AffichageConsultation extends AppCompatActivity {
             }
         }
     }
-    
+
     public void remplirSpinnerDepartementParListeDepartement(final ArrayList<Departement> lesDepartements) {
-        
+
         // Déclaration de l'adaptateur pour le spinner
         ArrayAdapter<String> spinDepartementsAdapter = new ArrayAdapter<>(
                 AffichageConsultation.this.getBaseContext(), android.R.layout.simple_spinner_item
@@ -118,6 +115,7 @@ public class AffichageConsultation extends AppCompatActivity {
         // Récupération des noms des départements
         for (int i = 0; i < lesDepartements.size(); i++) {
             spinDepartementsAdapter.add(lesDepartements.get(i).getNOM());
+            Log.d("Test",lesDepartements.get(i).getNOM());
         }
 
         spinnerDepartement.setAdapter(spinDepartementsAdapter);
@@ -151,13 +149,14 @@ public class AffichageConsultation extends AppCompatActivity {
 
             adapter_entete = new SimpleAdapter(this,
                     maliste_entete, R.layout.colonne, new
-                    String[] { "PRA_NOM", "PRA_PRENOM" }, new
-                    int[] {
+                    String[]{"PRA_NOM", "PRA_PRENOM"}, new
+                    int[]{
                     R.id.textViewColonne1, R.id.textViewColonne2
             });
 
             listviewEntete.setAdapter(adapter_entete);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
 
     public void remplirListViewPraticienParBouton(Departement DepartementSelectionne) {
@@ -168,13 +167,13 @@ public class AffichageConsultation extends AppCompatActivity {
 
         // Récupération de l'information en fonction du bouton cliqué
         if (boutonChoisi.equals("Connecte")) {
-            
+
             // Récupération des données via Retrofit
             final PraticienDAOConnecte PraticienAcces = new PraticienDAOConnecte() {
 
                 @Override
                 public void onTacheTerminee(final ArrayList<Praticien> lesPraticiens) {
-                    
+
                     // Utilisation de la liste de Praticiens récupérée
                     remplirListViewPraticienParListePraticiens(lesPraticiens);
                 }
@@ -191,7 +190,7 @@ public class AffichageConsultation extends AppCompatActivity {
 
                 @Override
                 public void onErreur(String message) {
-                    Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                     // TODO Auto-generated method stub
                 }
             };
@@ -201,9 +200,13 @@ public class AffichageConsultation extends AppCompatActivity {
             }
         } else {
             if (boutonChoisi.equals("Deconnecte")) {
-                // Récupération des données via SQLiteOpenHelper
-                PraticienDAODeconnecte praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
-                remplirListViewPraticienParListePraticiens(praticienDAODeconnecteAcces.getPraticiensByDepartement(DepartementSelectionne.getNOM()));
+                if (DepartementSelectionne != null) {
+                    // Récupération des données via SQLiteOpenHelper
+                    PraticienDAODeconnecte praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
+                    Log.d("DEPARTEMENT SELECTIONNE", DepartementSelectionne.getNUM_DEPARTEMENT());
+                    remplirListViewPraticienParListePraticiens(praticienDAODeconnecteAcces.getPraticiensByDepartement(DepartementSelectionne.getNUM_DEPARTEMENT()));
+                }
+
 
             } else {
 
@@ -213,9 +216,9 @@ public class AffichageConsultation extends AppCompatActivity {
             }
         }
     }
-    
+
     public void remplirListViewPraticienParListePraticiens(ArrayList<Praticien> lesPraticiens) {
-        
+
         // Création collection
         ArrayList<HashMap<String, String>> listePraticien = new ArrayList<>();
 
@@ -237,39 +240,44 @@ public class AffichageConsultation extends AppCompatActivity {
             adapterPraticien = new SimpleAdapter(this,
                     listePraticien,
                     R.layout.colonne,
-                    new String[] { "PRA_NOM", "PRA_PRENOM" },
-                    new int[] { R.id.textViewColonne1, R.id.textViewColonne2
+                    new String[]{"PRA_NOM", "PRA_PRENOM"},
+                    new int[]{R.id.textViewColonne1, R.id.textViewColonne2
                     });
 
             // MAJ de la listview à utilisant l'adapter
             listviewPraticien.setAdapter(adapterPraticien);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
+/*
+    public void gestion_infosPraticien(){
 
-//    public void gestion_suppression(){
-//
-//        final Gestionnaire_Departement unGestionnaireDepartement = (Gestionnaire_Departement) getApplicationContext();
-//
-//        listviewPraticien.setOnItemClickListener(new AdapterView.OnItemClickListener()
-//        {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                String itemClique = adapterView.getItemAtPosition(i).toString();
-//                itemClique = itemClique.substring(1, itemClique.length()-1);
-//                String[] keyValuePairs = itemClique.split(",");
-//                HashMap<String,String> ItemDecoupe = new HashMap<>();
-//
-//                for(String pair : keyValuePairs) {
-//                    String[] entry = pair.split("=");
-//                    ItemDecoupe.put(entry[0].trim(), entry[1].trim());
-//                }
-//
-//                Toast.makeText(getApplicationContext(), "Departement supprimé !", Toast.LENGTH_LONG).show();
-//                unGestionnaireDepartement.supprimerDepartement(unGestionnaireDepartement.getDepartements(ItemDecoupe.get("nom"), ItemDecoupe.get("prenom")));
-//
-//                remplirListViewPraticienParListePraticiens();
-//            }
-//        });
-//    }
+        listviewPraticien.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String itemClique = adapterView.getItemAtPosition(i).toString();
+                itemClique = itemClique.substring(1, itemClique.length()-1);
+                String[] paireCleValeur = itemClique.split(",");
+                HashMap<String,String> ItemDecoupe = new HashMap<>();
+
+                for(String pair : paireCleValeur) {
+                    String[] entry = pair.split("=");
+                    ItemDecoupe.put(entry[0].trim(), entry[1].trim());
+                }
+
+                // Récupération de l'information de source d'information
+                Bundle extras = getIntent().getExtras();
+                String boutonChoisi = (extras != null) ? extras.getString("consultationType") : "";
+
+                // Affichage de l'activité responsable de l'affichage des données complètes du praticien sélectionné
+                Intent intent = new Intent(getBaseContext(), AffichageInfosPraticien.class);
+                intent.putExtra("consultationType", boutonChoisi); // Ajout du choix Connecté/Deconnecté
+                intent.putExtra("nomPraticien", ItemDecoupe.get("nom")); // Ajout du nom du praticien sélectionné
+                intent.putExtra("prenomPraticien", ItemDecoupe.get("prenom")); // Ajout du prénom du praticien sélectionné
+                startActivity(intent);
+            }
+        });
+    }*/
 }

@@ -21,6 +21,6 @@ public interface InterfacePraticien {
     @GET("lesmedecins_par_depart.php")
     Call<ArrayList<Praticien>> lesPraticiensParDepart(@Query("libelledepartement") String libelleDepartement);
 
-    @GET("lesmedecins_par_nom.php")
-    Call<ArrayList<Praticien>> lesPraticiensParNom(@Query("nom") String nom);
+    @POST("lesmedecins_par_nom.php")
+    Call<ArrayList<Praticien>> lesPraticiensParNom(@Query("nom_medecin") String nomPraticien);
 }
