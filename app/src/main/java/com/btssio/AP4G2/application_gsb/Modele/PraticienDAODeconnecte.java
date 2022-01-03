@@ -39,12 +39,12 @@ public class PraticienDAODeconnecte {
     }
 
     /**
-     * @param nom_departement
+     * @param numero_departement
      * @return ArrayList<Praticien>
      */
-    public ArrayList<Praticien> getPraticiensByDepartement(String nom_departement){
+    public ArrayList<Praticien> getPraticiensByDepartement(String numero_departement){
         Cursor curseur;
-        String sql = "select * from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM where NUM_DEPARTEMENT="+nom_departement+";";
+        String sql = "select * from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM where NUM_DEPARTEMENT="+numero_departement+";";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
 
@@ -76,11 +76,6 @@ public class PraticienDAODeconnecte {
 
     }
 
-    /**
-     * ajout d'un praticien dans la bdd local
-     * @param unPraticien
-     * @return
-     */
     public long addPraticien(Praticien unPraticien){
         long ret;
         SQLiteDatabase bd = accesBD.getWritableDatabase();
