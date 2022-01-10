@@ -7,14 +7,12 @@ import android.widget.Toast;
 
 import com.btssio.AP4G2.application_gsb.Modele.Departement;
 import com.btssio.AP4G2.application_gsb.Modele.DepartementDAOConnecte;
-import com.btssio.AP4G2.application_gsb.Modele.DepartementDAODeconnecte;
 import com.btssio.AP4G2.application_gsb.Modele.Praticien;
 import com.btssio.AP4G2.application_gsb.Modele.PraticienDAOConnecte;
 import com.btssio.AP4G2.application_gsb.Modele.PraticienDAODeconnecte;
 import com.btssio.AP4G2.application_gsb.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AffichageInfosPraticien extends AppCompatActivity {
 
@@ -28,7 +26,6 @@ public class AffichageInfosPraticien extends AppCompatActivity {
     private TextView textViewCoefNotorietePraticien;
     private TextView textViewNumDepartPraticien;
     private TextView textViewNomDepartPraticien;
-    private TextView textViewNumRegionPraticien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,6 @@ public class AffichageInfosPraticien extends AppCompatActivity {
         textViewCoefNotorietePraticien = findViewById(R.id.textViewCoefNotorietePraticienValeur);
         textViewNumDepartPraticien = findViewById(R.id.textViewNumeroDepartPraticienValeur);
         textViewNomDepartPraticien = findViewById(R.id.textViewNomDepartPraticienValeur);
-        textViewNumRegionPraticien = findViewById(R.id.textViewNumRegionPraticienValeur);
     }
 
     public void getLePraticien() {
@@ -125,7 +121,7 @@ public class AffichageInfosPraticien extends AppCompatActivity {
         return (trouve) ? lesPraticiens.get(i) : null;
     }
 
-    public void affichage_infos(Praticien lePraticien) {
+    public void affichage_infos(final Praticien lePraticien) {
 
         // Valorisation des éléments XML
         textViewNumPraticien.setText(String.valueOf(lePraticien.getPRA_NUM()));
@@ -137,7 +133,71 @@ public class AffichageInfosPraticien extends AppCompatActivity {
         textViewTelephonePraticien.setText(lePraticien.getPRA_TELEPHONE());
         textViewCoefNotorietePraticien.setText(String.valueOf(lePraticien.getPRA_COEFNOTORIETE()));
         textViewNumDepartPraticien.setText(lePraticien.getNUM_DEPARTEMENT());
-//        textViewNomDepartPraticien.setText(lePraticien.getNOM_DEPARTEMENT());
-//        textViewNumRegionPraticien.setText(lePraticien.getNUM_REGION());
+
+        // Récupération de l'information de source d'information
+        Bundle extras = getIntent().getExtras();
+        String boutonChoisi = (extras != null) ? extras.getString("consultationType") : "";
+
+        // Récupération de l'information en fonction du bouton cliqué
+        if (boutonChoisi != null) {
+            if (boutonChoisi.equals("Connecte")) {
+
+                // Récupération des données via Retrofit
+                final DepartementDAOConnecte DepartementAccess = new DepartementDAOConnecte() {
+
+                    @Override
+                    public void onTacheTerminee(final ArrayList<Departement> lesDepartements) {
+
+                        // Valorisation de l'élément XML du nom du département
+                        textViewNomDepartPraticien.setText(findDepartementNomById(lesDepartements, lePraticien.getNUM_DEPARTEMENT()));
+                    }
+
+                    @Override
+                    public void onTacheTerminee(String resultat) {
+                        // TODO Auto-generated method stub
+                    }
+
+                    @Override
+                    public void onTacheTerminee(Departement resultat) {
+                        // TODO Auto-generated method stub
+                    }
+
+                    @Override
+                    public void onErreur(String message) {
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                        // TODO Auto-generated method stub
+                    }
+                };
+                DepartementAccess.getDepartementsPraticienDAOConnecte();
+            } else {
+                if (boutonChoisi.equals("Deconnecte")) {
+                    // Récupération des données via SQLiteOpenHelper
+                    /*
+                                    /!\/!\/!\/!\C'EST À TOI DE COMPLÉTER, JULIEN /!\/!\/!\/!\
+                    */
+                } else {
+                    // Aucune action réalisée
+                }
+            }
+        }
+    }
+
+    public String findDepartementNomById(ArrayList<Departement> lesDepartements, String NUM_DEPARTEMENT) {
+
+        // Déclaration du compteur et du booléen de sortie de boucle
+        Integer i = 0;
+        Boolean trouve = false;
+
+        // Recherche du Praticien ayant un prénom correspondant
+        while (i < lesDepartements.size() && !trouve) {
+            if (lesDepartements.get(i).getNUM_DEPARTEMENT().equals(NUM_DEPARTEMENT)) {
+                trouve = true;
+            } else {
+                i++;
+            }
+        }
+
+        // Est-ce que l'on a trouvé un département ayant un numéro correspondant
+        return (trouve) ? lesDepartements.get(i).getNOM() : "Aucun nom trouvé";
     }
 }

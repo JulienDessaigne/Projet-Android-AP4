@@ -43,7 +43,7 @@ public class AffichageConsultation extends AppCompatActivity {
         remplirSpinnerDepartementParBouton();
         remplirlistviewEntete();
         remplirListViewPraticienParBouton(DepartementSelectionne);
-        //gestion_infosPraticien();
+        gestion_infosPraticien();
     }
 
     public void Initialiser() {
@@ -249,7 +249,7 @@ public class AffichageConsultation extends AppCompatActivity {
         } catch (Exception e) {
         }
     }
-/*
+
     public void gestion_infosPraticien(){
 
         listviewPraticien.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -258,6 +258,7 @@ public class AffichageConsultation extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String itemClique = adapterView.getItemAtPosition(i).toString();
+                Log.d("Log", itemClique);
                 itemClique = itemClique.substring(1, itemClique.length()-1);
                 String[] paireCleValeur = itemClique.split(",");
                 HashMap<String,String> ItemDecoupe = new HashMap<>();
@@ -274,10 +275,10 @@ public class AffichageConsultation extends AppCompatActivity {
                 // Affichage de l'activité responsable de l'affichage des données complètes du praticien sélectionné
                 Intent intent = new Intent(getBaseContext(), AffichageInfosPraticien.class);
                 intent.putExtra("consultationType", boutonChoisi); // Ajout du choix Connecté/Deconnecté
-                intent.putExtra("nomPraticien", ItemDecoupe.get("nom")); // Ajout du nom du praticien sélectionné
-                intent.putExtra("prenomPraticien", ItemDecoupe.get("prenom")); // Ajout du prénom du praticien sélectionné
+                intent.putExtra("nomPraticien", ItemDecoupe.get("PRA_NOM")); // Ajout du nom du praticien sélectionné
+                intent.putExtra("prenomPraticien", ItemDecoupe.get("PRA_PRENOM")); // Ajout du prénom du praticien sélectionné
                 startActivity(intent);
             }
         });
-    }*/
+    }
 }
