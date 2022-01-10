@@ -1,6 +1,8 @@
 package com.btssio.AP4G2.application_gsb.Modele;
 
 
+import android.util.Log;
+
 import com.btssio.AP4G2.application_gsb.Interface.ApiClient;
 import com.btssio.AP4G2.application_gsb.Interface.EventAsync;
 import com.btssio.AP4G2.application_gsb.Interface.InterfaceDepartement;
@@ -33,7 +35,8 @@ public abstract class DepartementDAOConnecte implements EventAsync<Departement> 
                     onTacheTerminee(response.body());
                 } else {
                     int responseString = response.code();
-                    onErreur("erreur responseString Departement : "+responseString);
+                    Log.d("ERREUR", "Erreur Response Departement : getDepartementsDAOConnecte");
+                    onErreur("Code d'erreur : " + responseString);
                 }
             }
 
@@ -56,7 +59,8 @@ public abstract class DepartementDAOConnecte implements EventAsync<Departement> 
                     onTacheTerminee(response.body());
                 } else {
                     int responseString = response.code();
-                    onErreur("erreur responseString Departement : "+responseString);
+                    Log.d("ERREUR", "Erreur Response Departement : getDepartementsPraticienDAOConnecte");
+                    onErreur("Code d'erreur : " + responseString);
                 }
             }
     

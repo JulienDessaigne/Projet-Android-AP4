@@ -34,8 +34,8 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
                     onTacheTerminee(response.body());
                 } else {
                     int responseString = response.code();
-                    onErreur("erreur : "+responseString);
-                    Log.d("log", "erreur : "+responseString);
+                    Log.d("ERREUR", "Erreur Response Praticien : getPraticienDAOConnecte");
+                    onErreur("Code d'erreur : " + responseString);
                 }
             }
             @Override
@@ -58,7 +58,8 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
                     onTacheTerminee(response.body());
                 } else {
                     int responseString = response.code();
-                    onErreur("erreur responseString Praticien : "+responseString);
+                    Log.d("ERREUR", "Erreur Response Praticien : getPraticiensParDepartementDAOConnecte");
+                    onErreur("Code d'erreur : " + responseString);
                 }
             }
 
@@ -81,7 +82,8 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
                     onTacheTerminee(response.body());
                 } else {
                     int responseString = response.code();
-                    onErreur("erreur responseString Praticien : "+responseString);
+                    Log.d("ERREUR", "Erreur Response Praticien : getPraticiensParNomDAOConnecte");
+                    onErreur("Code d'erreur : " + responseString);
                 }
             }
 

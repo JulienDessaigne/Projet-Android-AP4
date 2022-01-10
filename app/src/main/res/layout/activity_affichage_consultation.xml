@@ -7,7 +7,7 @@
     tools:context="com.btssio.AP4G2.application_gsb.Controler.AffichageConsultation">
 
     <TextView
-        android:id="@+id/textViewConsult"
+        android:id="@+id/textViewTitreInfos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -29,10 +29,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewConsult" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitreInfos" />
 
     <TextView
-        android:id="@+id/textViewErr"
+        android:id="@+id/textViewListePraticien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewErr" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewListePraticien" />
 
     <ListView
         android:id="@+id/listViewPraticien"

@@ -2,6 +2,7 @@ package com.btssio.AP4G2.application_gsb.Controler;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,8 @@ import com.btssio.AP4G2.application_gsb.R;
 import java.util.ArrayList;
 
 public class AffichageInfosPraticien extends AppCompatActivity {
+    
+    private TextView textViewTitreInfos;
 
     private TextView textViewNumPraticien;
     private TextView textViewNomPraticien;
@@ -27,6 +30,17 @@ public class AffichageInfosPraticien extends AppCompatActivity {
     private TextView textViewNumDepartPraticien;
     private TextView textViewNomDepartPraticien;
 
+    private TextView textViewNumPraticienValeur;
+    private TextView textViewNomPraticienValeur;
+    private TextView textViewPrenomPraticienValeur;
+    private TextView textViewTelephonePraticienValeur;
+    private TextView textViewAdressePraticienValeur;
+    private TextView textViewCodePostalPraticienValeur;
+    private TextView textViewVillePraticienValeur;
+    private TextView textViewCoefNotorietePraticienValeur;
+    private TextView textViewNumDepartPraticienValeur;
+    private TextView textViewNomDepartPraticienValeur;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +52,30 @@ public class AffichageInfosPraticien extends AppCompatActivity {
 
     public void Initialiser() {
         // Valorisation des variables représentant les éléments XML
-        textViewNumPraticien = findViewById(R.id.textViewNumPraticienValeur);
-        textViewNomPraticien = findViewById(R.id.textViewNomPraticienValeur);
-        textViewPrenomPraticien = findViewById(R.id.textViewPrenomPraticienValeur);
-        textViewTelephonePraticien = findViewById(R.id.textViewTelephonePracticienValeur);
-        textViewAdressePraticien = findViewById(R.id.textViewAdressePracticienValeur);
-        textViewCodePostalPraticien = findViewById(R.id.textViewCodePostalPraticienValeur);
-        textViewVillePraticien = findViewById(R.id.textViewVillePraticienValeur);
-        textViewCoefNotorietePraticien = findViewById(R.id.textViewCoefNotorietePraticienValeur);
-        textViewNumDepartPraticien = findViewById(R.id.textViewNumeroDepartPraticienValeur);
-        textViewNomDepartPraticien = findViewById(R.id.textViewNomDepartPraticienValeur);
+
+        textViewTitreInfos = findViewById(R.id.textViewNumPraticien);
+
+        textViewNumPraticien = findViewById(R.id.textViewNumPraticien);
+        textViewNomPraticien = findViewById(R.id.textViewNomPraticien);
+        textViewPrenomPraticien = findViewById(R.id.textViewPrenomPraticien);
+        textViewTelephonePraticien = findViewById(R.id.textViewTelephonePracticien);
+        textViewAdressePraticien = findViewById(R.id.textViewAdressePracticien);
+        textViewCodePostalPraticien = findViewById(R.id.textViewCodePostalPraticien);
+        textViewVillePraticien = findViewById(R.id.textViewVillePraticien);
+        textViewCoefNotorietePraticien = findViewById(R.id.textViewCoefNotorietePraticien);
+        textViewNumDepartPraticien = findViewById(R.id.textViewNumeroDepartPraticien);
+        textViewNomDepartPraticien = findViewById(R.id.textViewNomDepartPraticien);
+
+        textViewNumPraticienValeur = findViewById(R.id.textViewNumPraticienValeur);
+        textViewNomPraticienValeur = findViewById(R.id.textViewNomPraticienValeur);
+        textViewPrenomPraticienValeur = findViewById(R.id.textViewPrenomPraticienValeur);
+        textViewTelephonePraticienValeur = findViewById(R.id.textViewTelephonePracticienValeur);
+        textViewAdressePraticienValeur = findViewById(R.id.textViewAdressePracticienValeur);
+        textViewCodePostalPraticienValeur = findViewById(R.id.textViewCodePostalPraticienValeur);
+        textViewVillePraticienValeur = findViewById(R.id.textViewVillePraticienValeur);
+        textViewCoefNotorietePraticienValeur = findViewById(R.id.textViewCoefNotorietePraticienValeur);
+        textViewNumDepartPraticienValeur = findViewById(R.id.textViewNumeroDepartPraticienValeur);
+        textViewNomDepartPraticienValeur = findViewById(R.id.textViewNomDepartPraticienValeur);
     }
 
     public void getLePraticien() {
@@ -85,8 +113,7 @@ public class AffichageInfosPraticien extends AppCompatActivity {
 
                     @Override
                     public void onErreur(String message) {
-                        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
-                        // TODO Auto-generated method stub
+                        afficherErreur("La connection n'a pas pu être établie.\n" + message);
                     }
                 };
                 PraticienAccess.getPraticiensParNomDAOConnecte(nomPraticien);
@@ -124,15 +151,15 @@ public class AffichageInfosPraticien extends AppCompatActivity {
     public void affichage_infos(final Praticien lePraticien) {
 
         // Valorisation des éléments XML
-        textViewNumPraticien.setText(String.valueOf(lePraticien.getPRA_NUM()));
-        textViewNomPraticien.setText(lePraticien.getPRA_NOM());
-        textViewPrenomPraticien.setText(lePraticien.getPRA_PRENOM());
-        textViewAdressePraticien.setText(lePraticien.getPRA_ADRESSE());
-        textViewVillePraticien.setText(lePraticien.getPRA_VILLE());
-        textViewCodePostalPraticien.setText(lePraticien.getPRA_CP());
-        textViewTelephonePraticien.setText(lePraticien.getPRA_TELEPHONE());
-        textViewCoefNotorietePraticien.setText(String.valueOf(lePraticien.getPRA_COEFNOTORIETE()));
-        textViewNumDepartPraticien.setText(lePraticien.getNUM_DEPARTEMENT());
+        textViewNumPraticienValeur.setText(String.valueOf(lePraticien.getPRA_NUM()));
+        textViewNomPraticienValeur.setText(lePraticien.getPRA_NOM());
+        textViewPrenomPraticienValeur.setText(lePraticien.getPRA_PRENOM());
+        textViewAdressePraticienValeur.setText(lePraticien.getPRA_ADRESSE());
+        textViewVillePraticienValeur.setText(lePraticien.getPRA_VILLE());
+        textViewCodePostalPraticienValeur.setText(lePraticien.getPRA_CP());
+        textViewTelephonePraticienValeur.setText(lePraticien.getPRA_TELEPHONE());
+        textViewCoefNotorietePraticienValeur.setText(String.valueOf(lePraticien.getPRA_COEFNOTORIETE()));
+        textViewNumDepartPraticienValeur.setText(lePraticien.getNUM_DEPARTEMENT());
 
         // Récupération de l'information de source d'information
         Bundle extras = getIntent().getExtras();
@@ -149,7 +176,7 @@ public class AffichageInfosPraticien extends AppCompatActivity {
                     public void onTacheTerminee(final ArrayList<Departement> lesDepartements) {
 
                         // Valorisation de l'élément XML du nom du département
-                        textViewNomDepartPraticien.setText(findDepartementNomById(lesDepartements, lePraticien.getNUM_DEPARTEMENT()));
+                        textViewNomDepartPraticienValeur.setText(findDepartementNomById(lesDepartements, lePraticien.getNUM_DEPARTEMENT()));
                     }
 
                     @Override
@@ -164,8 +191,7 @@ public class AffichageInfosPraticien extends AppCompatActivity {
 
                     @Override
                     public void onErreur(String message) {
-                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                        // TODO Auto-generated method stub
+                        afficherErreur("La connection n'a pas pu être établie.\n" + message);
                     }
                 };
                 DepartementAccess.getDepartementsPraticienDAOConnecte();
@@ -199,5 +225,35 @@ public class AffichageInfosPraticien extends AppCompatActivity {
 
         // Est-ce que l'on a trouvé un département ayant un numéro correspondant
         return (trouve) ? lesDepartements.get(i).getNOM() : "Aucun nom trouvé";
+    }
+
+    public void afficherErreur(String messageErreur) {
+
+        // Affectation du message au champs titre de la page
+        textViewTitreInfos.setText(messageErreur);
+
+        // Changement de visibilité des textView libellés pour qu'ils ne soient visibles
+        textViewNumPraticien.setVisibility(View.GONE);
+        textViewNomPraticien.setVisibility(View.GONE);
+        textViewPrenomPraticien.setVisibility(View.GONE);
+        textViewTelephonePraticien.setVisibility(View.GONE);
+        textViewAdressePraticien.setVisibility(View.GONE);
+        textViewCodePostalPraticien.setVisibility(View.GONE);
+        textViewVillePraticien.setVisibility(View.GONE);
+        textViewCoefNotorietePraticien.setVisibility(View.GONE);
+        textViewNumDepartPraticien.setVisibility(View.GONE);
+        textViewNomDepartPraticien.setVisibility(View.GONE);
+
+        // Non chChangement de visibilité des textView valorisés par l'utilisateur pour qu'ils ne soient visibles
+        textViewNumPraticienValeur.setVisibility(View.GONE);
+        textViewNomPraticienValeur.setVisibility(View.GONE);
+        textViewPrenomPraticienValeur.setVisibility(View.GONE);
+        textViewTelephonePraticienValeur.setVisibility(View.GONE);
+        textViewAdressePraticienValeur.setVisibility(View.GONE);
+        textViewCodePostalPraticienValeur.setVisibility(View.GONE);
+        textViewVillePraticienValeur.setVisibility(View.GONE);
+        textViewCoefNotorietePraticienValeur.setVisibility(View.GONE);
+        textViewNumDepartPraticienValeur.setVisibility(View.GONE);
+        textViewNomDepartPraticienValeur.setVisibility(View.GONE);
     }
 }

@@ -11,7 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.btssio.AP4G2.application_gsb.Modele.Departement;
 import com.btssio.AP4G2.application_gsb.Modele.DepartementDAOConnecte;
@@ -26,6 +26,8 @@ import java.util.HashMap;
 
 public class AffichageConsultation extends AppCompatActivity {
 
+    private TextView textViewTitre;
+    private TextView textViewListePraticien;
     private Departement DepartementSelectionne;
     private Spinner spinnerDepartement;
     private ListView listviewEntete;
@@ -49,6 +51,8 @@ public class AffichageConsultation extends AppCompatActivity {
     public void Initialiser() {
 
         // Valorisation des variables représentant les éléments XML
+        textViewTitre = findViewById(R.id.textViewTitreInfos);
+        textViewListePraticien = findViewById(R.id.textViewListePraticien);
         spinnerDepartement = findViewById(R.id.spinnerDepartement);
         listviewEntete = findViewById(R.id.listViewEntete);
         listviewPraticien = findViewById(R.id.listViewPraticien);
@@ -86,8 +90,7 @@ public class AffichageConsultation extends AppCompatActivity {
 
                     @Override
                     public void onErreur(String message) {
-                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                        // TODO Auto-generated method stub
+                        afficherErreur("La connection n'a pas pu être établie.\n" + message);
                     }
                 };
                 DepartementAcces.getDepartementsPraticienDAOConnecte();
@@ -190,8 +193,7 @@ public class AffichageConsultation extends AppCompatActivity {
 
                 @Override
                 public void onErreur(String message) {
-                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                    // TODO Auto-generated method stub
+                    afficherErreur("La connection n'a pas pu être établie.\n" + message);
                 }
             };
 
@@ -280,5 +282,13 @@ public class AffichageConsultation extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void afficherErreur(String messageErreur) {
+        textViewListePraticien.setText(messageErreur);
+        textViewTitre.setVisibility(View.GONE);
+        spinnerDepartement.setVisibility(View.GONE);
+        listviewEntete.setVisibility(View.GONE);
+        listviewPraticien.setVisibility(View.GONE);
     }
 }
