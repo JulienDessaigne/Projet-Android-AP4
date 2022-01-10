@@ -17,4 +17,6 @@
     <string name="InfosNomDepartPraticien">Nom du Département :</string>
     <string name="InfosNumRegionPraticien">Numéro de Région :</string>
     <string name="InfosNumPraticien">Numéro du Praticien :</string>
+    <string name="TitreConsultation">Liste des départements :</string>
+    <string name="ConsultationListePraticien">Liste des Praticiens du Département :</string>
 </resources>

@@ -69,9 +69,9 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
         });
     }
 
-    public void getPraticiensParNomDAOConnecte(String nom){
+    public void getPraticiensParNomDAOConnecte(String nom_medecin){
         Call<ArrayList<Praticien>> callPraticien;
-        callPraticien = apiPraticien.lesPraticiensParDepart(nom);
+        callPraticien = apiPraticien.lesPraticiensParNom(nom_medecin);
         callPraticien.enqueue(new Callback<ArrayList<Praticien>>() {
 
             @Override

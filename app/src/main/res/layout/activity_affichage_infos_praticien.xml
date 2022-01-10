@@ -114,7 +114,7 @@
         android:layout_marginTop="32dp"
         android:text=""
         app:layout_constraintStart_toEndOf="@+id/textViewAdressePracticien"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPrenomPraticien" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTelephonePracticien" />
 
     <TextView
         android:id="@+id/textViewCodePostalPraticien"
@@ -215,25 +215,5 @@
         android:text=""
         app:layout_constraintStart_toEndOf="@+id/textViewNomDepartPraticien"
         app:layout_constraintTop_toBottomOf="@+id/textViewNumeroDepartPraticien" />
-
-    <TextView
-        android:id="@+id/textViewNumRegionPraticien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/InfosNumRegionPraticien"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNomDepartPraticien" />
-
-    <TextView
-        android:id="@+id/textViewNumRegionPraticienValeur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text=""
-        app:layout_constraintStart_toEndOf="@+id/textViewNumRegionPraticien"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNomDepartPraticien" />
 
 </android.support.constraint.ConstraintLayout>
