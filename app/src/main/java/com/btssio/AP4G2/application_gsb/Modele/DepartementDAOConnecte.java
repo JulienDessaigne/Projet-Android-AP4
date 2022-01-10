@@ -42,7 +42,8 @@ public abstract class DepartementDAOConnecte implements EventAsync<Departement> 
 
             @Override
             public void onFailure(Call<ArrayList<Departement>> call, Throwable t) {
-                onErreur("erreur onFailure Departement: "+t.getMessage());
+                Log.d("ERREUR", "onFailure Departement : getDepartementsDAOConnecte");
+                onErreur("Erreur : "+t.getMessage());
             }
         });
     }
@@ -66,7 +67,8 @@ public abstract class DepartementDAOConnecte implements EventAsync<Departement> 
     
             @Override
             public void onFailure(Call<ArrayList<Departement>> call, Throwable t) {
-                onErreur("erreur onFailure Departement: "+t.getMessage());
+                Log.d("ERREUR", "onFailure Departement : getDepartementsPraticienDAOConnecte");
+                onErreur("Erreur : "+t.getMessage());
             }
         });
     }

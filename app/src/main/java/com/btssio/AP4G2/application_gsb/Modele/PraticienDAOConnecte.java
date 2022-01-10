@@ -65,7 +65,8 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
 
             @Override
             public void onFailure(@NonNull Call<ArrayList<Praticien>> call, @NonNull Throwable t) {
-                onErreur("erreur onFailure Praticien: "+t.getMessage());
+                Log.d("ERREUR", "onFailure Praticien : getPraticiensParDepartementDAOConnecte");
+                onErreur("Erreur : "+t.getMessage());
             }
         });
     }
@@ -89,7 +90,8 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
 
             @Override
             public void onFailure(@NonNull Call<ArrayList<Praticien>> call, @NonNull Throwable t) {
-                onErreur("erreur onFailure Praticien: "+t.getMessage());
+                Log.d("ERREUR", "onFailure Praticien : getPraticiensParNomDAOConnecte");
+                onErreur("Erreur : "+t.getMessage());
             }
         });
     }
