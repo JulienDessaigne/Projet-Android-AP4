@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.btssio.AP4G2.application_gsb.Modele.Departement;
 import com.btssio.AP4G2.application_gsb.Modele.DepartementDAOConnecte;
+import com.btssio.AP4G2.application_gsb.Modele.DepartementDAODeconnecte;
 import com.btssio.AP4G2.application_gsb.Modele.Praticien;
 import com.btssio.AP4G2.application_gsb.Modele.PraticienDAOConnecte;
 import com.btssio.AP4G2.application_gsb.Modele.PraticienDAODeconnecte;
@@ -198,9 +199,9 @@ public class AffichageInfosPraticien extends AppCompatActivity {
             } else {
                 if (boutonChoisi.equals("Deconnecte")) {
                     // Récupération des données via SQLiteOpenHelper
-                    /*
-                                    /!\/!\/!\/!\C'EST À TOI DE COMPLÉTER, JULIEN /!\/!\/!\/!\
-                    */
+                    DepartementDAODeconnecte DepartementDAODeconnecteAcces = new DepartementDAODeconnecte(this);
+                    ArrayList<Departement> lesDepartements = DepartementDAODeconnecteAcces.getDepartements();
+                    textViewNomDepartPraticien.setText(findDepartementNomById(lesDepartements, lePraticien.getNUM_DEPARTEMENT()));
                 } else {
                     // Aucune action réalisée
                 }

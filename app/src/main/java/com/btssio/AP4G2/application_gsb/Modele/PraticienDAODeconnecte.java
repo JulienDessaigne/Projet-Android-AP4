@@ -8,13 +8,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 
 public class PraticienDAODeconnecte {
 
-    private static String base = "BDPraticien";
+    private static String base = "BDGSB";
     private static int version = 1;
     private BDSQLiteOpenHelper accesBD;
 
@@ -45,7 +46,6 @@ public class PraticienDAODeconnecte {
         String sql = "select * from praticien where NUM_DEPARTEMENT="+NUM_DEPARTEMENT+";";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
-//join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM
     }
 
 
@@ -56,7 +56,7 @@ public class PraticienDAODeconnecte {
     public ArrayList<Praticien> getPraticiensByDepartement(Departement departement){
         Cursor curseur;
         String numero_departement = departement.getNUM_DEPARTEMENT();
-        String sql = "select * from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM where NUM_DEPARTEMENT="+numero_departement+";";
+        String sql = "select * from praticien where NUM_DEPARTEMENT='"+numero_departement+"';";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
 
@@ -68,7 +68,7 @@ public class PraticienDAODeconnecte {
      */
     public ArrayList<Praticien> getPraticiensByNom(String nom){
         Cursor curseur;
-        String sql = "select * from praticien where PRA_NOM="+nom+";";
+        String sql = "select * from praticien where PRA_NOM='"+nom+"';";
         curseur = accesBD.getReadableDatabase().rawQuery(sql,null);
         return cursorToPraticienArrayList(curseur);
     }

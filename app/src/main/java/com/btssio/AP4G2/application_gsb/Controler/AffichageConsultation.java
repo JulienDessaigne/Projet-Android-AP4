@@ -98,7 +98,7 @@ public class AffichageConsultation extends AppCompatActivity {
                 if (boutonChoisi.equals("Deconnecte")) {
                     // Récupération des données via SQLiteOpenHelper
                     DepartementDAODeconnecte DepartementDAODeconnecteAcces = new DepartementDAODeconnecte(this);
-                    remplirSpinnerDepartementParListeDepartement(DepartementDAODeconnecteAcces.getDepartements());
+                    remplirSpinnerDepartementParListeDepartement(DepartementDAODeconnecteAcces.getLesDepartementsDesPraticiens());
                 } else {
                     // Valorisation à vide du tableau de recencement,
                     // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
@@ -205,8 +205,7 @@ public class AffichageConsultation extends AppCompatActivity {
                 if (DepartementSelectionne != null) {
                     // Récupération des données via SQLiteOpenHelper
                     PraticienDAODeconnecte praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
-                    Log.d("DEPARTEMENT SELECTIONNE", DepartementSelectionne.getNUM_DEPARTEMENT());
-                    remplirListViewPraticienParListePraticiens(praticienDAODeconnecteAcces.getPraticiensByDepartement(DepartementSelectionne.getNUM_DEPARTEMENT()));
+                    remplirListViewPraticienParListePraticiens(praticienDAODeconnecteAcces.getPraticiensByDepartement(DepartementSelectionne));
                 }
 
 
@@ -214,7 +213,7 @@ public class AffichageConsultation extends AppCompatActivity {
 
                 // Valorisation à vide du tableau de recencement,
                 // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
-                remplirListViewPraticienParListePraticiens(new ArrayList<Praticien>());
+                afficherErreur("La base de données locale n'est pas remplie");
             }
         }
     }

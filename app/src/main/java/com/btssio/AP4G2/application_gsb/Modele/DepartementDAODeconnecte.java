@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class DepartementDAODeconnecte {
 
-    private static String base = "BDDepartement";
+    private static String base = "BDGSB";
     private static int version = 1;
     private BDSQLiteOpenHelper accesBD;
 
@@ -32,11 +32,9 @@ public class DepartementDAODeconnecte {
      */
     public ArrayList<Departement> getLesDepartementsDesPraticiens() {
         Cursor curseur;
-        String sql = "select NUM_DEPARTEMENT, PRA_NOM from praticien join departement on departement.NUM_DEPARTEMENT=praticien.PRA_NUM;";
+        String sql = "select distinct D.NUM_DEPARTEMENT, D.NOM from departement as D inner join praticien as P on P.NUM_DEPARTEMENT = D.NUM_DEPARTEMENT order by D.NUM_DEPARTEMENT;";
         curseur = accesBD.getReadableDatabase().rawQuery(sql, null);
         return cursorToDepartementArrayList(curseur);
-
-
     }
 
     /**
