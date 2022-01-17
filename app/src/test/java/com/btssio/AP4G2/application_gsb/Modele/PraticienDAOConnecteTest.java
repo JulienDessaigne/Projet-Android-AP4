@@ -16,12 +16,12 @@ public class PraticienDAOConnecteTest {
 
     @Before
     public void setUp() throws Exception {
-        System.out.println("———— FIN  DU TEST————");
+        System.out.println("————DÉBUT DU TEST————");
     }
 
     @After
     public void tearDown() throws Exception {
-        System.out.println("————DÉBUT DU TEST————");
+        System.out.println("———— FIN  DU TEST————");
     }
 
     @Test
