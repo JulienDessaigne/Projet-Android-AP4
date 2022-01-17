@@ -50,7 +50,9 @@ public class AffichageInfosPraticien extends AppCompatActivity {
         Initialiser();
         getLePraticien();
     }
-
+    /**
+     * Fonction qui valorise tous les éléments visuel du layout
+     */
     public void Initialiser() {
         // Valorisation des variables représentant les éléments XML
 
@@ -79,6 +81,7 @@ public class AffichageInfosPraticien extends AppCompatActivity {
         textViewNomDepartPraticienValeur = findViewById(R.id.textViewNomDepartPraticienValeur);
     }
 
+
     public void getLePraticien() {
 
         // Récupération de l'information de source d'information
@@ -90,6 +93,7 @@ public class AffichageInfosPraticien extends AppCompatActivity {
 
         // Récupération de l'information en fonction du bouton cliqué
         if (boutonChoisi != null) {
+            //Si on choisi la fonction connecté
             if (boutonChoisi.equals("Connecte")) {
 
                 // Récupération des données via Retrofit
@@ -119,17 +123,28 @@ public class AffichageInfosPraticien extends AppCompatActivity {
                 };
                 PraticienAccess.getPraticiensParNomDAOConnecte(nomPraticien);
             } else {
+
+                //Si on choisi la fonction déconnecté
                 if (boutonChoisi.equals("Deconnecte")) {
+
                     // Récupération des données via SQLiteOpenHelper
                     PraticienDAODeconnecte PraticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
                     affichage_infos(findPraticienByPrenom(PraticienDAODeconnecteAcces.getPraticiensByNom(nomPraticien),prenomPraticien));
                 } else {
-                    // Aucune action réalisée
+                    // Message d'erreur
+                    // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
+                    afficherErreur("Erreur fonctionnalité choisie");
                 }
             }
         }
     }
 
+    /**
+     * Fonction qui permet de trouver le bon praticien grâce au prénom et ainsi d'éviter les problèmes d'homonyme
+     * @param lesPraticiens
+     * @param lePrenom
+     * @return
+     */
     public Praticien findPraticienByPrenom(ArrayList<Praticien> lesPraticiens, String lePrenom) {
 
         // Déclaration du compteur et du booléen de sortie de boucle
@@ -149,6 +164,10 @@ public class AffichageInfosPraticien extends AppCompatActivity {
         return (trouve) ? lesPraticiens.get(i) : null;
     }
 
+    /**
+     * Fonciton permettant de retrouver le bon praticien en fonction de son prénom
+     * @param lePraticien
+     */
     public void affichage_infos(final Praticien lePraticien) {
 
         // Valorisation des éléments XML
@@ -168,6 +187,7 @@ public class AffichageInfosPraticien extends AppCompatActivity {
 
         // Récupération de l'information en fonction du bouton cliqué
         if (boutonChoisi != null) {
+            //Si on choisi la fonction connecté
             if (boutonChoisi.equals("Connecte")) {
 
                 // Récupération des données via Retrofit
@@ -197,18 +217,27 @@ public class AffichageInfosPraticien extends AppCompatActivity {
                 };
                 DepartementAccess.getDepartementsPraticienDAOConnecte();
             } else {
+                //Si on choisi la fonction déconnecté
                 if (boutonChoisi.equals("Deconnecte")) {
                     // Récupération des données via SQLiteOpenHelper
                     DepartementDAODeconnecte DepartementDAODeconnecteAcces = new DepartementDAODeconnecte(this);
                     ArrayList<Departement> lesDepartements = DepartementDAODeconnecteAcces.getDepartements();
                     textViewNomDepartPraticien.setText(findDepartementNomById(lesDepartements, lePraticien.getNUM_DEPARTEMENT()));
                 } else {
-                    // Aucune action réalisée
+                    // Message d'erreur
+                    // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
+                    afficherErreur("Erreur fonctionnalité choisie");
                 }
             }
         }
     }
 
+    /**
+     * Fonction permettant de trouver le nom du département du praticien
+     * @param lesDepartements
+     * @param NUM_DEPARTEMENT
+     * @return
+     */
     public String findDepartementNomById(ArrayList<Departement> lesDepartements, String NUM_DEPARTEMENT) {
 
         // Déclaration du compteur et du booléen de sortie de boucle
@@ -228,6 +257,10 @@ public class AffichageInfosPraticien extends AppCompatActivity {
         return (trouve) ? lesDepartements.get(i).getNOM() : "Aucun nom trouvé";
     }
 
+    /**
+     * Fonction qui permet d'afficher un message d'erreur dans l'application
+     * @param messageErreur
+     */
     public void afficherErreur(String messageErreur) {
 
         // Affectation du message au champs titre de la page

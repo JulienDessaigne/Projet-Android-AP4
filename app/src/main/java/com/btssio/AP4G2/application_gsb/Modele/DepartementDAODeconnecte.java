@@ -20,6 +20,7 @@ public class DepartementDAODeconnecte {
     private BDSQLiteOpenHelper accesBD;
 
     /**
+     * Constructeur initialisant la BdD locale
      * @param ct
      */
     public DepartementDAODeconnecte(Context ct) {
@@ -28,6 +29,7 @@ public class DepartementDAODeconnecte {
     }
 
     /**
+     * Récupère les départements des praticiens
      * @return ArrayList<Departement>
      */
     public ArrayList<Departement> getLesDepartementsDesPraticiens() {
@@ -38,7 +40,8 @@ public class DepartementDAODeconnecte {
     }
 
     /**
-     * @return
+     * Récupère tous les départements
+     * @return ArrayList<Departement>
      */
     public ArrayList<Departement> getDepartements(){
 
@@ -51,6 +54,7 @@ public class DepartementDAODeconnecte {
 
 
     /**
+     * Converti le curseur passé en paramêtre en ArrayList<Departement>
      * @param curseur
      * @return ArrayList<Departement>
      */
@@ -73,7 +77,7 @@ public class DepartementDAODeconnecte {
     /**
      * Ajout d'un departement dans la bdd local
      * @param unDepartement
-     * @return
+     * @return long
      */
     public long addDepartement(Departement unDepartement){
         long ret;

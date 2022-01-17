@@ -19,10 +19,16 @@ import retrofit2.Response;
 public abstract class DepartementDAOConnecte implements EventAsync<Departement> {
     private InterfaceDepartement apiDepartement;
 
+    /**
+     * Constructeur initialisant l'api
+     */
     public DepartementDAOConnecte(){
         apiDepartement = ApiClient.getClient().create(InterfaceDepartement.class);
     }
 
+    /**
+     * Récupère les departements
+     */
     public void getDepartementsDAOConnecte() {
         Call<ArrayList<Departement>> callDepartement;
         callDepartement = apiDepartement.lesDepartements();
@@ -48,6 +54,9 @@ public abstract class DepartementDAOConnecte implements EventAsync<Departement> 
         });
     }
 
+    /**
+     * Récupère les départements des praticiens
+     */
     public void getDepartementsPraticienDAOConnecte() {
         Call<ArrayList<Departement>> callDepartement;
         callDepartement = apiDepartement.lesDepartementsDesPraticiens();

@@ -41,6 +41,8 @@ public class AffichageConsultation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affichage_consultation);
 
+
+        //Appel des fonctions principales
         Initialiser();
         remplirSpinnerDepartementParBouton();
         remplirlistviewEntete();
@@ -48,6 +50,9 @@ public class AffichageConsultation extends AppCompatActivity {
         gestion_infosPraticien();
     }
 
+    /**
+     * Fonction qui valorise tous les éléments visuel du layout
+     */
     public void Initialiser() {
 
         // Valorisation des variables représentant les éléments XML
@@ -58,6 +63,9 @@ public class AffichageConsultation extends AppCompatActivity {
         listviewPraticien = findViewById(R.id.listViewPraticien);
     }
 
+    /**
+     * Fonction qui permet de récupérer les départements soit avec Retrofit en mode connecté, soit dans la base de données locale avec BDSQLiteOpenHelper
+     */
     public void remplirSpinnerDepartementParBouton() {
 
         // Récupération de l'information de source d'information
@@ -66,6 +74,8 @@ public class AffichageConsultation extends AppCompatActivity {
 
         // Récupération de l'information en fonction du bouton cliqué
         if (boutonChoisi != null) {
+
+            //Si on choisi la fonction connecté
             if (boutonChoisi.equals("Connecte")) {
 
                 // Récupération des données via Retrofit
@@ -95,19 +105,37 @@ public class AffichageConsultation extends AppCompatActivity {
                 };
                 DepartementAcces.getDepartementsPraticienDAOConnecte();
             } else {
+
+                //Si on choisi la fonction déconnecté
                 if (boutonChoisi.equals("Deconnecte")) {
                     // Récupération des données via SQLiteOpenHelper
                     DepartementDAODeconnecte DepartementDAODeconnecteAcces = new DepartementDAODeconnecte(this);
-                    remplirSpinnerDepartementParListeDepartement(DepartementDAODeconnecteAcces.getLesDepartementsDesPraticiens());
+                    ArrayList<Departement> lesDepartementsDesPraticiens = DepartementDAODeconnecteAcces.getLesDepartementsDesPraticiens();
+
+                    //Si on récupère des données dans la base de données locale
+                    if(!lesDepartementsDesPraticiens.isEmpty()) {
+
+                        //On rempli le spinner avec la liste des départements
+                        remplirSpinnerDepartementParListeDepartement(lesDepartementsDesPraticiens);
+                    } else {
+
+                        //Si aucune donnée n'est présente dans la BdD
+                        afficherErreur("La base de données locale n'est pas remplie");
+
+                    }
                 } else {
-                    // Valorisation à vide du tableau de recencement,
+                    // Message d'erreur
                     // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
-                    remplirSpinnerDepartementParListeDepartement(new ArrayList<Departement>());
+                    afficherErreur("Erreur fonctionnalité choisie");
                 }
             }
         }
     }
 
+    /**
+     * Fonction qui rempli le spinner avec les départements reçu en mode connecté ou déconnecté
+     * @param lesDepartements
+     */
     public void remplirSpinnerDepartementParListeDepartement(final ArrayList<Departement> lesDepartements) {
 
         // Déclaration de l'adaptateur pour le spinner
@@ -122,7 +150,8 @@ public class AffichageConsultation extends AppCompatActivity {
         }
 
         spinnerDepartement.setAdapter(spinDepartementsAdapter);
-        // gestion des evenements sur le spinner de selection du Departement
+
+        // gestion de l'évenement "Un departement choisi" sur le spinner des départements
         spinnerDepartement.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -137,6 +166,10 @@ public class AffichageConsultation extends AppCompatActivity {
         });
     }
 
+
+    /**
+     * Fonction qui rempli l'entete de la listView des medecins
+     */
     public void remplirlistviewEntete() {
 
         // Création d'un tableau associatif
@@ -162,6 +195,10 @@ public class AffichageConsultation extends AppCompatActivity {
         }
     }
 
+    /**
+     * Fonction qui rempli la listView avec les medecins lié au département selectionné dans le spinner des départements
+     * @param DepartementSelectionne
+     */
     public void remplirListViewPraticienParBouton(Departement DepartementSelectionne) {
 
         // Récupération de l'information de source d'information
@@ -169,6 +206,7 @@ public class AffichageConsultation extends AppCompatActivity {
         String boutonChoisi = (extras != null) ? extras.getString("consultationType") : "";
 
         // Récupération de l'information en fonction du bouton cliqué
+        //Si on choisi la fonction connecté
         if (boutonChoisi.equals("Connecte")) {
 
             // Récupération des données via Retrofit
@@ -197,11 +235,16 @@ public class AffichageConsultation extends AppCompatActivity {
                 }
             };
 
+            //Si le departement selectionné n'est pas null
             if (DepartementSelectionne != null) {
                 PraticienAcces.getPraticiensParDepartementDAOConnecte(DepartementSelectionne.getNOM());
             }
         } else {
+
+            //Si on choisi la fonction déconnecté
             if (boutonChoisi.equals("Deconnecte")) {
+
+                //SI le département selectionné n'est pas null
                 if (DepartementSelectionne != null) {
                     // Récupération des données via SQLiteOpenHelper
                     PraticienDAODeconnecte praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
@@ -211,13 +254,17 @@ public class AffichageConsultation extends AppCompatActivity {
 
             } else {
 
-                // Valorisation à vide du tableau de recencement,
+                // Message d'erreur
                 // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles
-                afficherErreur("La base de données locale n'est pas remplie");
+                afficherErreur("Erreur fonctionnalité choisie");
             }
         }
     }
 
+    /**
+     * Fonction qui permet de remplir la listView avec un tableau de praticien passé en paramêtre
+     * @param lesPraticiens
+     */
     public void remplirListViewPraticienParListePraticiens(ArrayList<Praticien> lesPraticiens) {
 
         // Création collection
@@ -251,6 +298,9 @@ public class AffichageConsultation extends AppCompatActivity {
         }
     }
 
+    /**
+     * Fonction qui permet, à la selection d'un praticien dans la listView, d'afficher toutes ses infos dans un nouveau Layout
+     */
     public void gestion_infosPraticien(){
 
         listviewPraticien.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -283,6 +333,10 @@ public class AffichageConsultation extends AppCompatActivity {
         });
     }
 
+    /**
+     * Fonction qui permet d'afficher un message d'erreur dans l'application
+     * @param messageErreur
+     */
     public void afficherErreur(String messageErreur) {
         textViewListePraticien.setText(messageErreur);
         textViewTitre.setVisibility(View.GONE);

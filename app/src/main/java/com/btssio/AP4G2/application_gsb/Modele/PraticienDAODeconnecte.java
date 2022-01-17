@@ -20,7 +20,7 @@ public class PraticienDAODeconnecte {
     private BDSQLiteOpenHelper accesBD;
 
     /**
-     *
+     * Constructeur initialisant la BdD locale
      * @param ct
      */
     public PraticienDAODeconnecte(Context ct) {
@@ -28,6 +28,7 @@ public class PraticienDAODeconnecte {
     }
 
     /**
+     * Récupère tous les praticiens
      * @return ArrayList<Praticien>
      */
     public ArrayList<Praticien> getPraticiens(){
@@ -38,6 +39,7 @@ public class PraticienDAODeconnecte {
     }
 
     /**
+     * Récèpre les praticiens d'un département avec le nom du département passé en paramêtre
      * @param NUM_DEPARTEMENT
      * @return ArrayList<Praticien>
      */
@@ -50,6 +52,7 @@ public class PraticienDAODeconnecte {
 
 
     /**
+     * Récèpre les praticiens d'un département avec objet Departement en paramêtre
      * @param departement
      * @return ArrayList<Praticien>
      */
@@ -63,6 +66,7 @@ public class PraticienDAODeconnecte {
     }
 
     /**
+     * Récupère les praticiens ayant le même nom passé en paramêtre
      * @param nom
      * @return ArrayList<Praticien>
      */
@@ -73,6 +77,11 @@ public class PraticienDAODeconnecte {
         return cursorToPraticienArrayList(curseur);
     }
 
+    /**
+     * Fonction d'ajout d'un praticien dans la BdD
+     * @param unPraticien
+     * @return
+     */
     public long addPraticien(Praticien unPraticien){
         long ret;
         SQLiteDatabase bd = accesBD.getWritableDatabase();
@@ -96,6 +105,7 @@ public class PraticienDAODeconnecte {
 
 
     /**
+     *  Converti le curseur passé en paramêtre en ArrayList<Praticien>
      * @param curseur
      * @return ArrayList<Praticien>
      */
@@ -132,6 +142,13 @@ public class PraticienDAODeconnecte {
         return listePraticien;
     }
 
+    /**
+     * Ajout du numéro du département passé en paramêtre au praticien passé en paramêtre
+     * @param Prenom
+     * @param Nom
+     * @param numDepartement
+     * @return
+     */
     public long addNumDepartementPraticien(String Prenom,String Nom,String numDepartement){
         long ret;
         SQLiteDatabase bd = accesBD.getWritableDatabase();

@@ -20,10 +20,16 @@ import retrofit2.Response;
 public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
     private InterfacePraticien apiPraticien;
 
+    /**
+     * Constructeur initialisant l'api
+     */
     public PraticienDAOConnecte(){
         apiPraticien = ApiClient.getClient().create(InterfacePraticien.class);
     }
 
+    /**
+     * Récupère les Praticiens
+     */
     public void getPraticienDAOConnecte(){
         Call<ArrayList<Praticien>> callPraticien;
         callPraticien = apiPraticien.lesPraticiens();
@@ -46,6 +52,10 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
         });
     }
 
+    /**
+     * Récupère les praticiens d'un département passé en paramêtre
+     * @param libelleDepartement
+     */
     public void getPraticiensParDepartementDAOConnecte(String libelleDepartement) {
         Call<ArrayList<Praticien>> callPraticien;
         callPraticien = apiPraticien.lesPraticiensParDepart(libelleDepartement);
@@ -71,6 +81,10 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
         });
     }
 
+    /**
+     * Récupère les praticiens par un nom passé en paramêtre
+     * @param nom_medecin
+     */
     public void getPraticiensParNomDAOConnecte(String nom_medecin){
         Call<ArrayList<Praticien>> callPraticien;
         callPraticien = apiPraticien.lesPraticiensParNom(nom_medecin);

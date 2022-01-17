@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
         gestionBoutton();
     }
 
-
+    /**
+     * Valorisation des variables représentant les éléments XML
+     * Valorisation des accès à la BdD locale
+     */
     public void Initialiser() {
         btnAffichageConn = findViewById(R.id.bouton1);
         btnAffichageImport = findViewById(R.id.bouton2);
@@ -57,8 +60,12 @@ public class MainActivity extends AppCompatActivity {
         praticienDAODeconnecteAcces = new PraticienDAODeconnecte(this);
     }
 
-
+    /**
+     * Fonction gérant les boutons du layout
+     */
     public void gestionBoutton() {
+
+        //Bouton pour la fonction connecté
         btnAffichageConn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -69,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Bouton pour l'importation des données
         btnAffichageImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Log.d("Test","=============test=============");
-
-            final DepartementDAOConnecte DepartementDAO = new DepartementDAOConnecte(){
-                @Override
+                Log.d("Test","=============test=============");
+                DepartementDAOConnecte DepartementDAO = new DepartementDAOConnecte(){
+                    @Override
 
                 public void onTacheTerminee(String resultat) {
                 }
@@ -189,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        //Bouton pour la fonction déconnecté
         btnAffichageDeco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
