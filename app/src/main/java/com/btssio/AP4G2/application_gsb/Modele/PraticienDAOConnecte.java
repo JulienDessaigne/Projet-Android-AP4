@@ -53,7 +53,7 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
     }
 
     /**
-     * Récupère les praticiens d'un département passé en paramêtre
+     * Récupère les praticiens d'un département passé en paramètre
      * @param libelleDepartement
      */
     public void getPraticiensParDepartementDAOConnecte(String libelleDepartement) {
@@ -82,7 +82,7 @@ public abstract class PraticienDAOConnecte implements EventAsync<Praticien>{
     }
 
     /**
-     * Récupère les praticiens par un nom passé en paramêtre
+     * Récupère les praticiens par un nom passé en paramètre
      * @param nom_medecin
      */
     public void getPraticiensParNomDAOConnecte(String nom_medecin){

@@ -1,8 +1,5 @@
 package com.btssio.AP4G2.application_gsb.Modele;
 
-/**
- * Created by dessaigne on 29/11/2021.
- */
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,7 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-
+/**
+ * Created by dessaigne on 29/11/2021.
+ */
 public class DepartementDAODeconnecte {
 
     private static String base = "BDGSB";
@@ -54,7 +53,7 @@ public class DepartementDAODeconnecte {
 
 
     /**
-     * Converti le curseur passé en paramêtre en ArrayList<Departement>
+     * Converti le curseur passé en paramètre en ArrayList<Departement>
      * @param curseur
      * @return ArrayList<Departement>
      */

@@ -168,7 +168,7 @@ public class AffichageConsultation extends AppCompatActivity {
 
 
     /**
-     * Fonction qui rempli l'entete de la listView des medecins
+     * Fonction qui rempli l'entete de la listView des praticiens
      */
     public void remplirlistviewEntete() {
 
@@ -196,7 +196,7 @@ public class AffichageConsultation extends AppCompatActivity {
     }
 
     /**
-     * Fonction qui rempli la listView avec les medecins lié au département selectionné dans le spinner des départements
+     * Fonction qui rempli la listView avec les praticiens lié au département selectionné dans le spinner des départements
      * @param DepartementSelectionne
      */
     public void remplirListViewPraticienParBouton(Departement DepartementSelectionne) {
@@ -262,7 +262,7 @@ public class AffichageConsultation extends AppCompatActivity {
     }
 
     /**
-     * Fonction qui permet de remplir la listView avec un tableau de praticien passé en paramêtre
+     * Fonction qui permet de remplir la listView avec un tableau de praticien passé en paramètre
      * @param lesPraticiens
      */
     public void remplirListViewPraticienParListePraticiens(ArrayList<Praticien> lesPraticiens) {

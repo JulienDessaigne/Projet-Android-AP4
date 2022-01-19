@@ -1,9 +1,5 @@
 package com.btssio.AP4G2.application_gsb.Modele;
 
-/**
- * Created by dessaigne on 29/11/2021.
- */
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,7 +8,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-
+/**
+ * Created by dessaigne on 29/11/2021.
+ */
 public class PraticienDAODeconnecte {
 
     private static String base = "BDGSB";
@@ -39,7 +37,7 @@ public class PraticienDAODeconnecte {
     }
 
     /**
-     * Récèpre les praticiens d'un département avec le nom du département passé en paramêtre
+     * Récèpre les praticiens d'un département avec le nom du département passé en paramètre
      * @param NUM_DEPARTEMENT
      * @return ArrayList<Praticien>
      */
@@ -52,7 +50,7 @@ public class PraticienDAODeconnecte {
 
 
     /**
-     * Récèpre les praticiens d'un département avec objet Departement en paramêtre
+     * Récèpre les praticiens d'un département avec objet Departement en paramètre
      * @param departement
      * @return ArrayList<Praticien>
      */
@@ -66,7 +64,7 @@ public class PraticienDAODeconnecte {
     }
 
     /**
-     * Récupère les praticiens ayant le même nom passé en paramêtre
+     * Récupère les praticiens ayant le même nom passé en paramètre
      * @param nom
      * @return ArrayList<Praticien>
      */
@@ -105,7 +103,7 @@ public class PraticienDAODeconnecte {
 
 
     /**
-     *  Converti le curseur passé en paramêtre en ArrayList<Praticien>
+     *  Converti le curseur passé en paramètre en ArrayList<Praticien>
      * @param curseur
      * @return ArrayList<Praticien>
      */
@@ -143,7 +141,7 @@ public class PraticienDAODeconnecte {
     }
 
     /**
-     * Ajout du numéro du département passé en paramêtre au praticien passé en paramêtre
+     * Ajout du numéro du département passé en paramètre au praticien passé en paramètre
      * @param Prenom
      * @param Nom
      * @param numDepartement
