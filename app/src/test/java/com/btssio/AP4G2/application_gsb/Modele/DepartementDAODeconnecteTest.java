@@ -4,7 +4,6 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.test.InstrumentationRegistry;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +15,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import com.btssio.AP4G2.application_gsb.Modele.DepartementDAODeconnecte;
 import com.btssio.AP4G2.application_gsb.Modele.PraticienDAODeconnecte;
@@ -25,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 
 /**
@@ -39,9 +35,9 @@ public class DepartementDAODeconnecteTest extends AppCompatActivity {
     public void setUp() throws Exception {
 
         System.out.println("———— DEBUT  DU TEST————");
-        Context mMockContext;
-        mMockContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        db = new BDSQLiteOpenHelper(mMockContext, "BDGSB", null, 1);
+        
+
+        db = new BDSQLiteOpenHelper(this, "BDGSB", null, 1);
 
 
     }
@@ -50,6 +46,7 @@ public class DepartementDAODeconnecteTest extends AppCompatActivity {
     @After
     public void tearDown() throws Exception {
         System.out.println("———— FIN  DU TEST————");
+        db.close();
     }
 
     @Test
