@@ -222,7 +222,7 @@ public class AffichageInfosPraticien extends AppCompatActivity {
                     // Récupération des données via SQLiteOpenHelper
                     DepartementDAODeconnecte DepartementDAODeconnecteAcces = new DepartementDAODeconnecte(this);
                     ArrayList<Departement> lesDepartements = DepartementDAODeconnecteAcces.getDepartements();
-                    textViewNomDepartPraticien.setText(findDepartementNomById(lesDepartements, lePraticien.getNUM_DEPARTEMENT()));
+                    textViewNomDepartPraticienValeur.setText(findDepartementNomById(lesDepartements, lePraticien.getNUM_DEPARTEMENT()));
                 } else {
                     // Message d'erreur
                     // dans le cas d'un accès à l'affichage sans passage par les boutons disponibles

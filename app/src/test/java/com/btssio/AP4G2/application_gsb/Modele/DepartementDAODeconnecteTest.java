@@ -4,6 +4,7 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.test.InstrumentationRegistry;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,13 +15,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
 import com.btssio.AP4G2.application_gsb.Modele.DepartementDAODeconnecte;
 import com.btssio.AP4G2.application_gsb.Modele.PraticienDAODeconnecte;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 
 /**
@@ -28,11 +33,15 @@ import static org.junit.Assert.*;
  */
 public class DepartementDAODeconnecteTest extends AppCompatActivity {
     private BDSQLiteOpenHelper db = null;
+
+
     @Before
     public void setUp() throws Exception {
 
-     db=null;
-     db=new BDSQLiteOpenHelper(this,"BDGSB",null,1);
+        System.out.println("———— DEBUT  DU TEST————");
+        Context mMockContext;
+        mMockContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        db = new BDSQLiteOpenHelper(mMockContext, "BDGSB", null, 1);
 
 
     }
@@ -45,12 +54,13 @@ public class DepartementDAODeconnecteTest extends AppCompatActivity {
 
     @Test
     public void getLesDepartementsDesPraticiens() throws Exception {
+
         Cursor curseur;
         String sql = "select distinct D.NUM_DEPARTEMENT, D.NOM from departement as D inner join praticien as P on P.NUM_DEPARTEMENT = D.NUM_DEPARTEMENT order by D.NUM_DEPARTEMENT;";
 
-        curseur = db.getReadableDatabase().rawQuery(sql,null);
+        curseur = db.getReadableDatabase().rawQuery(sql, null);
         ArrayList<Departement> listeDepartement = new ArrayList<Departement>();
-        String NUM_DEPARTEMENT ;
+        String NUM_DEPARTEMENT;
         String NOM;
 
         curseur.moveToFirst();
@@ -65,7 +75,7 @@ public class DepartementDAODeconnecteTest extends AppCompatActivity {
         Assert.assertSame("La La requete getLesDepartementsDesPraticiens() ne revoie pas de département", 0, listeDepartement.size());
     }
 
-    @Test
+
     public void getDepartements() throws Exception {
 
         /*ArrayList<Departement> lesDepartements = departementDecoAccess.getDepartements();
@@ -73,7 +83,7 @@ public class DepartementDAODeconnecteTest extends AppCompatActivity {
         Assert.assertSame("La La requete getDepartements() ne revoie pas de département", 0, lesDepartements.size());*/
     }
 
-    @Test
+
     public void addDepartement() throws Exception {
     }
 
